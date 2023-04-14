@@ -1,9 +1,11 @@
 import React from 'react'
+import { FormLogin } from '../../components/Login/Login';
 
 export const Home = () => {
   return (
     <div className="home__container">
-			<h1 className="home__title">Página de login/home Pharmacy System</h1>
+			<h3 className="home__title"> Faça seu Login no Pharmacy System</h3>
+			< FormLogin/>
     </div>
   );
 };
