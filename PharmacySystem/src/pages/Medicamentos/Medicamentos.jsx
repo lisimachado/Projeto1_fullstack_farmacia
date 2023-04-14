@@ -1,11 +1,7 @@
-import React from 'react'
-
-const Medicamentos = () => {
+export const Medicamentos = () => {
   return (
-    <main className="home__container">
+    <div className="home__container">
       <h1 className="home__title">Página dos medicamentos</h1>
-    </main>
+    </div>
   );
 };
-
-export default Medicamentos;

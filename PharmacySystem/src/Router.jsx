@@ -1,24 +1,20 @@
 import React from 'react'
 import { createBrowserRouter } from "react-router-dom";
-import App from "./App";
-import Home from "./pages/Home/Home";
-import CadastroFarmacias from "./pages/CadastroFarmacia/CadastroFarmacia";
-import Farmacias from "./pages/Farmacias/Farmacias";
-import Medicamentos from "./pages/Medicamentos/Medicamentos"
+import { App } from "./App";
+import { Home }  from "./pages/Home/Home";
+import { CadFarmacias } from './pages/CadFarmacias/CadFarmacias';
+import { Farmacias } from "./pages/Farmacias/Farmacias";
+import { Medicamentos } from "./pages/Medicamentos/Medicamentos";
 
-const Routes = createBrowserRouter([
+export const appRouter = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
-      { index: true, element: <Home /> },
-      { path: "/CadastroFarmacias", element: <CadastroFarmacias /> },
-      { path: "/Farmacias", element: <Farmacias /> },
-			{ path: "/Medicamentos", element: <Medicamentos /> },
-
+      { path: '/home', element: <Home /> },
+			{ path: '/cadfarmacias', element: <CadFarmacias/> },
+			{ path: '/farmacias', element: <Farmacias /> },
+			{ path: '/medicamentos', element: <Medicamentos /> },
     ],
   },
 ]);
-
-export default Routes;
-
