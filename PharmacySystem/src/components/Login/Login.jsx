@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 
 export const FormLogin = () => {
   return (
-    <Form>
+    <Form className="formLogin">
       <Form.Group className="mb-3" controlId="formEmail">
         <Form.Label>Usuário</Form.Label>
         <Form.Control type="email" placeholder="Digite seu usuário" />
@@ -22,6 +22,6 @@ export const FormLogin = () => {
 					Entrar
 				</Button>
 			</div>
-       </Form>
+    </Form>
   );
 }
