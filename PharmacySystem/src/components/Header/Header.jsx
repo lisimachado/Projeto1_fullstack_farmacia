@@ -11,21 +11,20 @@ export const Header = () => {
   }
 	
   return (
-    <Navbar bg="grey" variant="grey">
-      <Navbar.Brand href="/">
-        <img
-          src={logo} 
-          height="70"
-          className="d-inline-block align-top"
-          alt="Logo"
-        />
-      </Navbar.Brand>
-      <Nav Nav className="justify-content-end">
-        <Nav.Link href="/farmacias">Farmácias</Nav.Link>
-        <Nav.Link href="/medicamentos">Medicamentos</Nav.Link>
-				<Nav.Link href="/cadastro">Cadastro</Nav.Link>
-       
-      </Nav>
+    <Navbar variant="grey">
+				<Navbar.Brand style={{ marginLeft: '5%'}} href="/">
+					<img
+						src={logo} 
+						height="70"
+						className="d-inline-block align-top"
+						alt="Logo"
+					/>
+				</Navbar.Brand>
+				<Nav className="ms-auto nav-with-margin" style={{ marginRight: '5%', fontWeight: 'bold'}}>
+					<Nav.Link href="/farmacias">Farmácias</Nav.Link>
+					<Nav.Link href="/medicamentos">Medicamentos</Nav.Link>
+					<Nav.Link href="/cadastro">Cadastro</Nav.Link>
+				</Nav>
     </Navbar>
   );
 }
