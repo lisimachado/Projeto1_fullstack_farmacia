@@ -65,10 +65,10 @@ export const FormNovoMedicamento = ()=> {
 				</Form.Group>
 
 			</div>
-			<div className="d-flex justify-content-center">
+			<div className="d-flex justify-content-end">		
 				<Button 
-				className="mc-auto" 
-				variant="secondary"
+				className="btn-envio ms-auto" 
+				variant="success"
 				type="submit"
 				id="btn-cadastro">
 					Enviar Cadastro
