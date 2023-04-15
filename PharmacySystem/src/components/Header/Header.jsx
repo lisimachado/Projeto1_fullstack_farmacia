@@ -28,24 +28,3 @@ export const Header = () => {
     </Navbar>
   );
 }
-
-
-
-
-
-
-
-// import React from 'react';
-// import logo from './logo.png';
-// import './Header.css';
-
-// export const Header = () => {
-//   return (
-//     <header className="header__container">
-// 			<img id='logo' src={logo} alt="Logo Pharmacy Cener System" />
-//      <h1>Menu de navegação</h1>
-//     </header>
-//   );
-// }
-
-
