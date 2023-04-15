@@ -1,7 +1,7 @@
 export const Medicamentos = () => {
   return (
-    <div className="home__container">
-      <h1 className="home__title">Página dos medicamentos</h1>
+    <div className="container">
+      <h1 className="title">Medicamentos</h1>
     </div>
   );
 };

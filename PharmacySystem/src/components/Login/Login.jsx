@@ -6,8 +6,8 @@ export const FormLogin = () => {
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formEmail">
-        <Form.Label>Endereço de E-mail</Form.Label>
-        <Form.Control type="email" placeholder="Digite seu e-mail" />
+        <Form.Label>Usuário</Form.Label>
+        <Form.Control type="email" placeholder="Digite seu usuário" />
         <Form.Text className="text-muted">
           
         </Form.Text>
@@ -17,10 +17,11 @@ export const FormLogin = () => {
         <Form.Label>Senha</Form.Label>
         <Form.Control type="password" placeholder="Digite sua senha" />
       </Form.Group>
-			<Button variant="primary" type="submit">
-        Entrar
-      </Button>
-      
+			<div className="d-flex justify-content-end">
+				<Button className="ml-auto" variant="primary" type="submit">
+					Entrar
+				</Button>
+			</div>
        </Form>
   );
 }
