@@ -1,8 +1,23 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import React, { useState } from 'react';
 import './FormNovaFarmacia.css';
 
 export const FormNovaFarmacia = ()=> {
+
+	const [cnpj, setCNPJ] = useState('');
+
+	function handleCNPJChange(event) {
+		const numCNPJ = event.target.value.replace(/\D/g, '').substring(0, 14);
+		setCNPJ(numCNPJ);
+	}
+
+
+  // function handleCNPJChange(event) {
+  //   const numCNPJ = event.target.value.replace(/\D/g, '').substring(0, 14);
+  //   setCNPJ(numCNPJ);
+  // }
+
   return (		
 
 		<Form className="FormCadastro">
@@ -14,7 +29,13 @@ export const FormNovaFarmacia = ()=> {
 
 				<Form.Group className="col-4" id="form_cnpj">
 					<Form.Label>CNPJ</Form.Label>
-					<Form.Control type="number" />
+					<Form.Control 
+            type="text"
+						maxLength={18}
+						pattern="\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}"
+						value={cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5')}
+						onChange={handleCNPJChange} 
+          />
 				</Form.Group>
 			</div>
 
@@ -33,7 +54,7 @@ export const FormNovaFarmacia = ()=> {
 
 				<Form.Group className="col-4" id="form_telefone">
 					<Form.Label>Telefone Celular</Form.Label>
-					<Form.Control type="number" />
+					<Form.Control type="tel" />
 				</Form.Group>
 			</div>
 
