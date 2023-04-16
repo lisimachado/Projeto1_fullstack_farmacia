@@ -4,13 +4,15 @@ import './Footer.css';
 
 export const Footer = () => {
 
+
+	//Função para ajustar o footer conforme a altura da página
 	useEffect(() => {
     const pageContent = document.getElementById('page-content');
     const footer = document.querySelector('.footer');
     const windowHeight = window.innerHeight;
 
     if (pageContent?.clientHeight > windowHeight) {
-      footer.style.position = 'absolute';
+      footer.style.position = 'relative';
     } else {
       footer.style.position = 'fixed';
     }

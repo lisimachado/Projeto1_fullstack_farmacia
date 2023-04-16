@@ -1,8 +1,6 @@
 .footer{
-	margin-top: 10%;
 	background: rgb(176, 109, 90, 0.7);
 	color: white;
-	position: absolute; 
 	bottom: 0;
 	width: 100%;
 }
