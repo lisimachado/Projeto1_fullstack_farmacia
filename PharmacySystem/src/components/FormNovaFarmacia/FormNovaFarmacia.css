@@ -4,13 +4,21 @@
 	padding: 2%;
 	border-radius: 2%;
 	align-items: center;
-	
 }
 
-#btn-cadastro{
-	margin-top: 3%;
+#btnCep{
+	margin: 17% 0 0 0;
+	padding: 2% 2%;
+	height: 48%;
 }
 
-.btn-voltar{
-	margin-right: 10px;
+/*Para retirar setas dos campos de input que são do tipo number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+ 
+input[type="number"] {
+  -moz-appearance: textfield;
 }

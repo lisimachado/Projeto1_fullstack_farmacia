@@ -45,7 +45,7 @@ export const FormNovoMedicamento = ()=> {
 
 				<Form.Group className="col-8" id="form_descricao">
 					<Form.Label>Descrição do Medicamento</Form.Label>
-					<Form.Control type="text" />
+					<Form.Control type="textarea" />
 				</Form.Group>
 			</div>
 

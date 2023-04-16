@@ -48,9 +48,22 @@ export const FormNovaFarmacia = ()=> {
 
 		<Form className="FormCadastro">
 			<div className="form-group row">
-				<Form.Group className="col-8" id="form_nome">
+				<Form.Group className="col-9" id="form_nome">
 					<Form.Label>Razão Social</Form.Label>
 					<Form.Control type="text" />
+				</Form.Group>
+
+				<Form.Group className="col-3" id="form_codigo">
+					<Form.Label>Código da Loja</Form.Label>
+					<Form.Control type="number" inputMode="numeric"/>
+				</Form.Group>
+				
+			</div>
+
+			<div className="form-group row">
+				<Form.Group className="col-8" id="form_fantasia">
+					<Form.Label>Nome Fantasia</Form.Label>
+					<Form.Control type="textarea" />
 				</Form.Group>
 
 				<Form.Group className="col-4" id="form_cnpj">
@@ -66,13 +79,6 @@ export const FormNovaFarmacia = ()=> {
 			</div>
 
 			<div className="form-group row">
-				<Form.Group className="col-7" id="form_fantasia">
-					<Form.Label>Nome Fantasia</Form.Label>
-					<Form.Control type="text" />
-				</Form.Group>
-			</div>
-
-			<div className="form-group row">
 				<Form.Group className="col-8" id="form_email">
 					<Form.Label>E-mail</Form.Label>
 					<Form.Control type="email" />
@@ -84,29 +90,32 @@ export const FormNovaFarmacia = ()=> {
 				</Form.Group>
 			</div>
 
-			<div className="form-group row">
-				<Form.Group className="col-4" id="form_cep">
+			<div className=" row">
+				<Form.Group className="col-2" id="form_cep">
 					<Form.Label>CEP</Form.Label>
-					{/* <p>{`CEP: ${formulario.cep}`}</p> */}
 					<Form.Control 
 					type="text"
           value={formulario.cep}
           onChange={(evento) => atualizarCampo("cep", evento.target.value)} />
-					<input type="button" onClick={buscarCep} value="Buscar Endereço" />
 				</Form.Group>
 
-				<Form.Group className="col-8" id="form_logradouro">
+				<Form.Group className="col-3">
+					<Button id="btnCep" onClick={buscarCep} variant="secondary">Buscar Endereço</Button>
+				</Form.Group>
+
+				<Form.Group className="col-7" id="form_logradouro">
 					<Form.Label>Logradouro</Form.Label>
 					<Form.Control 
 					type="text"
 					value={endereco?.logradouro} readOnly />
 				</Form.Group>
 			</div>
+
 			<br />
 			<div className="form-group row">
 				<Form.Group className="col-3" id="form_numero">
 					<Form.Label>Número</Form.Label>
-					<Form.Control type="number" />
+					<Form.Control type="number" inputMode="numeric"/>
 				</Form.Group>
 
 				<Form.Group className="col-4" id="form_complemento">
@@ -121,7 +130,7 @@ export const FormNovaFarmacia = ()=> {
 					value={endereco?.bairro} readOnly />
 				</Form.Group>
 			</div>
-			<br />
+			
 			<div className="form-group row">
 				<Form.Group className="col-6" id="form_cidade">
 					<Form.Label>Cidade</Form.Label>
