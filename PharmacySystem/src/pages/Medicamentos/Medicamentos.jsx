@@ -76,6 +76,7 @@ export const Medicamentos = () => {
         </Col>
       ))}
     </Row>
+		<br /><br />
     </div>
   );
 };
