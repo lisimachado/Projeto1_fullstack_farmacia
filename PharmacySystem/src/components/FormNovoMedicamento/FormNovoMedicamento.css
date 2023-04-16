@@ -1,0 +1,12 @@
+.FormCadastro{
+	margin: 0 10%;
+	background-color: rgb(128, 128, 128, 0.1);
+	padding: 2%;
+	border-radius: 2%;
+	align-items: center;
+	
+}
+
+#btn-cadastro{
+	margin-top: 3%;
+}

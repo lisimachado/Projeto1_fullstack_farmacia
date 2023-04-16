@@ -1,0 +1,24 @@
+.FormCadastro{
+	margin: 0 10%;
+	background-color: rgb(128, 128, 128, 0.1);
+	padding: 2%;
+	border-radius: 2%;
+	align-items: center;
+}
+
+#btnCep{
+	margin: 28% 0 0 0;
+	padding: 2% 2%;
+	height: 48%;
+}
+
+/*Para retirar setas dos campos de input que são do tipo number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+ 
+input[type="number"] {
+  -moz-appearance: textfield;
+}
