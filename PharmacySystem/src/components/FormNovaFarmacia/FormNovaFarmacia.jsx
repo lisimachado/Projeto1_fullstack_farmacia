@@ -99,11 +99,11 @@ export const FormNovaFarmacia = ()=> {
           onChange={(evento) => atualizarCampo("cep", evento.target.value)} />
 				</Form.Group>
 
-				<Form.Group className="col-3">
-					<Button id="btnCep" onClick={buscarCep} variant="secondary">Buscar Endereço</Button>
+				<Form.Group className="col-2">
+					<Button id="btnCep" onClick={buscarCep} variant="secondary">Buscar CEP</Button>
 				</Form.Group>
 
-				<Form.Group className="col-7" id="form_logradouro">
+				<Form.Group className="col-8" id="form_logradouro">
 					<Form.Label>Logradouro</Form.Label>
 					<Form.Control 
 					type="text"
