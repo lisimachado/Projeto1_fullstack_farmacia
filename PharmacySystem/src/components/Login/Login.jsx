@@ -56,6 +56,7 @@ export const FormLogin = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           isInvalid={passwordError}
+					minLength={8}
         />
         <Form.Control.Feedback type="invalid">
           Senha é obrigatória.
@@ -63,7 +64,10 @@ export const FormLogin = () => {
       </Form.Group>
 
       <div className="d-flex justify-content-end">
-        <Button className="ml-auto" variant="primary" type="submit">
+        <Button 
+				className="ml-auto" 
+				variant="primary" 
+				type="submit">
           Entrar
         </Button>
       </div>
