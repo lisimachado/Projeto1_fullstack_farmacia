@@ -1,8 +1,9 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './FormNovaFarmacia.css';
 import axios from 'axios';
+import { IMaskInput } from 'react-imask';
 
 export const FormNovaFarmacia = () => {
 
@@ -29,8 +30,8 @@ export const FormNovaFarmacia = () => {
 		event.preventDefault();
 
 		const novafarmacia = {
-			razaoSocial,
 			codLoja,
+			razaoSocial,
 			fantasia,
 			CNPJ,
 			email,
@@ -58,13 +59,6 @@ export const FormNovaFarmacia = () => {
 		}
 	};
 
-	//Máscara CNPJ
-	function handleCNPJChange(event) {
-		const numCNPJ = event.target.value.replace(/\D/g, '').substring(0, 14);
-		setCNPJ(numCNPJ);
-	}
-
-
 	//FUNÇÃO DE BUSCAO CEP NA API
 	const buscarCep = () => {
 		fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -78,6 +72,7 @@ export const FormNovaFarmacia = () => {
 		setBairro(dados.bairro)
 		setCidade(dados.localidade)
 		setUf(dados.uf)
+		setPais(dados.pais)
 	}
 
 	//Limpar os campos dos inputs
@@ -110,14 +105,15 @@ export const FormNovaFarmacia = () => {
 						<Form.Control
 							type="text"
 							value={razaoSocial}
-							onChange={e => setRazaoSocial(e.target.value)} />
+							onChange={e => setRazaoSocial(e.target.value)}
+						/>
 					</Form.Group>
 
 					<Form.Group className="col-3" id="form_codigo">
 						<Form.Label>Código da Loja</Form.Label>
 						<Form.Control
-							type="number"
-							inputMode="numeric"
+							as={IMaskInput}
+							mask="0000"
 							value={codLoja}
 							onChange={e => setCodLoja(e.target.value)} />
 					</Form.Group>
@@ -134,9 +130,9 @@ export const FormNovaFarmacia = () => {
 					<Form.Group className="col-4" id="form_CNPJ">
 						<Form.Label>CNPJ</Form.Label>
 						<Form.Control
-							type="number"
+							as={IMaskInput}
+							mask="00.000.000/0000-00"
 							inputMode="numeric"
-							maxNumber={14}
 							value={CNPJ}
 							onChange={e => setCNPJ(e.target.value)}
 
@@ -159,7 +155,10 @@ export const FormNovaFarmacia = () => {
 
 					<Form.Group className="col-4" id="form_telefone">
 						<Form.Label>Telefone Celular</Form.Label>
-						<Form.Control type="tel"
+						<Form.Control
+							type="tel"
+							as={IMaskInput}
+							mask="(00)00000-0000"
 							value={telefone}
 							onChange={e => setTelefone(e.target.value)}
 						/>
@@ -167,13 +166,13 @@ export const FormNovaFarmacia = () => {
 				</div>
 
 				<div className="row">
-					<Form.Group className="col-2" id="form_cep">
+					<Form.Group className="col-3" id="form_cep">
 						<Form.Label>CEP</Form.Label>
 						<Form.Control
-							type="text"
+							as={IMaskInput}
+							mask="00000000"
 							value={cep}
 							onChange={(e) => setCep(e.target.value)} />
-
 					</Form.Group>
 
 					<Form.Group className="col-2">
@@ -182,11 +181,10 @@ export const FormNovaFarmacia = () => {
 							variant="secondary">Buscar CEP</Button>
 					</Form.Group>
 
-					<Form.Group className="col-8" id="form_logradouro">
+					<Form.Group className="col-7" id="form_logradouro">
 						<Form.Label>Logradouro</Form.Label>
 						<Form.Control
 							type="text"
-							// value={endereco?.logradouro} readOnly 
 							value={logradouro}
 							onChange={e => setLogradouro(e.target.value)}
 						/>
@@ -216,7 +214,6 @@ export const FormNovaFarmacia = () => {
 						<Form.Label>Bairro</Form.Label>
 						<Form.Control
 							type="text"
-							// value={endereco?.bairro} readOnly 
 							value={bairro}
 							onChange={e => setBairro(e.target.value)}
 						/>
@@ -228,7 +225,6 @@ export const FormNovaFarmacia = () => {
 						<Form.Label>Cidade</Form.Label>
 						<Form.Control
 							type="text"
-							// value={endereco?.localidade} readOnly
 							value={cidade}
 							onChange={e => setCidade(e.target.value)}
 						/>
@@ -238,16 +234,15 @@ export const FormNovaFarmacia = () => {
 						<Form.Label>Estado/UF</Form.Label>
 						<Form.Control
 							type="text"
-							// value={endereco?.uf} readOnly
 							value={uf}
 							onChange={e => setUf(e.target.value)}
-
 						/>
 					</Form.Group>
 
 					<Form.Group className="col-4" id="form_pais">
 						<Form.Label>País</Form.Label>
-						<Form.Control type="text"
+						<Form.Control
+							type="text"
 							value={pais}
 							onChange={e => setPais(e.target.value)}
 						/>
@@ -258,9 +253,8 @@ export const FormNovaFarmacia = () => {
 					<Button
 						className="btn-envio ms-auto"
 						variant="secondary"
-						type="submit"
 						id="btn-cadastro"
-						onClick={limparDados}>  {/*Criar função para limpar os dados */}
+						onClick={limparDados}>
 						Limpar Dados
 					</Button>
 
@@ -274,7 +268,7 @@ export const FormNovaFarmacia = () => {
 				</div>
 			</Form>
 
-			{/* Ajuste temporário para o footer não ficar sobrepondo o conteudo da página. */}
+			{/* Ajuste para o footer não ficar sobrepondo o conteudo da página. */}
 			<br /><br /><br />
 		</container>
 	);
