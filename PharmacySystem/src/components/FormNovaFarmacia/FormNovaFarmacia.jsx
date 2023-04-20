@@ -5,6 +5,8 @@ import './FormNovaFarmacia.css';
 import axios from 'axios';
 import { IMaskInput } from 'react-imask';
 
+
+
 export const FormNovaFarmacia = () => {
 
 	const [razaoSocial, setRazaoSocial] = useState('');
@@ -59,6 +61,7 @@ export const FormNovaFarmacia = () => {
 		}
 	};
 
+
 	//FUNÇÃO DE BUSCAO CEP NA API
 	const buscarCep = () => {
 		fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -96,7 +99,11 @@ export const FormNovaFarmacia = () => {
 	//Formulário
 
 	return (
-		<container className="container">
+		<container className="container"
+		// //TENTATIVA PARA PEGAR DO LOCALSTORAGE
+		// CadastroFarmacia atualizarLojas={atualizarLojas}
+		>
+
 			<Form className="FormCadastro"
 				onSubmit={handleFormSubmit}>
 				<div className="form-group row">
@@ -135,11 +142,6 @@ export const FormNovaFarmacia = () => {
 							inputMode="numeric"
 							value={CNPJ}
 							onChange={e => setCNPJ(e.target.value)}
-
-						// pattern="\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}"
-						// value={cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5')}
-						// onChange={handleCNPJChange} 
-
 						/>
 					</Form.Group>
 				</div>
