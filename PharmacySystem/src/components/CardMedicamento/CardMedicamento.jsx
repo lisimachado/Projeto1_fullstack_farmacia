@@ -28,7 +28,7 @@ export const CardMedicamento = ({ nomeMedicamento, dosagem, precoMedicamento, la
 				</Modal.Header>
 				<Modal.Body>
 					<img variant="top" src={caixaMedicamento} style={{ width: '200px', margin: 'auto' }} />
-					<h4>Tipo de Medicamento {tipoMedicamento}</h4>
+					<h4>Tipo: {tipoMedicamento}</h4>
 					<p>{descricao}</p>
 				</Modal.Body>
 				<Modal.Footer>
