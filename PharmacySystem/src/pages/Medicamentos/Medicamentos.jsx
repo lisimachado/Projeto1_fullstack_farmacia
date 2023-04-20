@@ -3,7 +3,6 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { CardMedicamento } from '../../components/CardMedicamento/CardMedicamento';
 import caixaMedicamento from '../../components/CardMedicamento/Img/caixaMedicamento.png';
-import aspirina from '../../components/CardMedicamento/Img/aspirina.png';
 
 const medicamentosIniciais = [
 	{
@@ -22,7 +21,7 @@ const medicamentosIniciais = [
 		dosagem: '500mg',
 		tipoMedicamento: 'Medicamento Normal',
 		precoMedicamento: '10,80',
-		imgSrc: aspirina,
+		imgSrc: caixaMedicamento,
 		descricao: 'Tem ação analgésica, antitérmica e anti-inflamatória e é indicado para o alívio da dor.'
 	},
 
