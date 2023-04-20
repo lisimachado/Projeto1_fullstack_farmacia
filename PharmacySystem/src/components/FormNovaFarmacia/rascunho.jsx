@@ -1,3 +1,385 @@
+//PAGINA DE  FORMULARIO MEDICAMENTO FUNCIONANDO
+
+// import { useState } from 'react';
+// import Button from 'react-bootstrap/Button';
+// import Form from 'react-bootstrap/Form';
+// import './FormNovoMedicamento.css';
+
+// export const FormNovoMedicamento = () => {
+
+// 	//Salvar no localStorage
+
+// 	const [nomeMedicamento, setNomeMedicamento] = useState('');
+// 	const [laboratorio, setLaboratorio] = useState('');
+// 	const [dosagem, setDosagem] = useState('');
+// 	const [tipoMedicamento, setTipoMedicamento] = useState('');
+// 	const [precoMedicamento, setPrecoMedicamento] = useState('');
+// 	const [descricao, setDescricao] = useState('');
+
+// 	const [formMedicamentoValue, setFormMedicamentoValue] = useState('');
+
+// 	const handleFormSubmit = (event) => {
+// 		event.preventDefault();
+
+// 		const novamedicamento = {
+// 			nomeMedicamento,
+// 			laboratorio,
+// 			dosagem,
+// 			tipoMedicamento,
+// 			precoMedicamento,
+// 			descricao,
+// 		}
+
+// 		try {
+// 			const formularioAtualizado = [...formMedicamentoValue, novamedicamento]
+// 			setFormMedicamentoValue(formularioAtualizado)
+
+// 			localStorage.setItem("dadosMedicamento", JSON.stringify(formularioAtualizado))
+
+// 			console.log("Dados salvos com sucesso!")
+// 			alert("Dados salvos com sucesso!");
+
+// 			//função callback
+// 			onMedicamentoAdd(novamedicamento);
+
+// 		} catch (error) {
+// 			console.log(error)
+// 		}
+// 	};
+
+// 	return (
+// 		<fieldset>
+// 			<Form className="FormCadastro"
+// 				onSubmit={handleFormSubmit}>
+// 				<div className="form-group row">
+// 					<Form.Group className="col-7" id="form_nome_medicamento">
+// 						<Form.Label>Nome do medicamento</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={nomeMedicamento}
+// 							onChange={e => setNomeMedicamento(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-5" id="form_laboratorio">
+// 						<Form.Label>Laboratório</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={laboratorio}
+// 							onChange={e => setLaboratorio(e.target.value)}
+// 						/>
+// 					</Form.Group>
+// 				</div>
+
+// 				<div className="form-group row">
+// 					<Form.Group className="col-3" id="form_dosagem">
+// 						<Form.Label>Dosagem</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={dosagem}
+// 							onChange={e => setDosagem(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-6" id="form_tipomedicamento">
+// 						<Form.Label>Tipo de Medicamento</Form.Label>
+// 						<Form.Select
+// 							aria-label="Selecione o tipo de medicamento"
+// 							value={tipoMedicamento}
+// 							onChange={(e) => setTipoMedicamento(e.target.value)}>
+// 							<option value="">Selecione uma opção</option>
+// 							<option value="Medicamento controlado">Medicamento controlado</option>
+// 							<option value="Medicamento comum">Medicamento comum</option>
+
+// 						</Form.Select>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-3" id="form_preco">
+// 						<Form.Label>Valor</Form.Label>
+// 						<Form.Control
+// 							type="number"
+// 							value={precoMedicamento}
+// 							onChange={e => setPrecoMedicamento(e.target.value)}
+// 						// 	ref={inputRef}
+// 						// 	value={value}
+// 						// 	onInput={onInput}
+// 						//  value={preco} onChange={handlePriceChange} onBlur={handlePriceBlur} 
+// 						/>
+// 					</Form.Group>
+// 				</div>
+
+// 				<div className="form-group row">
+// 					<Form.Group className="col-12" id="form_descricao">
+// 						<Form.Label>Descrição do Medicamento</Form.Label>
+// 						<Form.Control
+// 							type="textarea"
+// 							value={descricao}
+// 							onChange={e => setDescricao(e.target.value)} />
+// 					</Form.Group>
+// 				</div>
+
+// 				<div className="d-flex justify-content-end">
+// 					<Button
+// 						className="btn-envio ms-auto"
+// 						variant="success"
+// 						type="submit"
+// 						id="btn-cadastro">
+// 						Enviar Cadastro
+// 					</Button>
+// 				</div>
+// 			</Form> <br /> <br /> <br />
+// 		</fieldset>
+// 	);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//PÁGINA MEDICAMENTOS FUNCIONANDO
+// import { useState, useEffect } from 'react';
+// import React from 'react';
+// import { Row, Col } from 'react-bootstrap';
+// import { CardMedicamento } from '../../components/CardMedicamento/CardMedicamento';
+// import caixaMedicamento from '../../components/CardMedicamento/Img/caixaMedicamento.png';
+// import aspirina from '../../components/CardMedicamento/Img/aspirina.png';
+
+
+// export const Medicamentos = () => {
+	
+// 	const medicamentos = [
+
+// 		{
+// 			medicamento: 'Desloratadina',
+// 			laboratorio: 'Biosintética',
+// 			dosagem: '5mg',
+// 			tipo: 'Medicamento Normal',
+// 			preco: 'R$ 49,71',
+// 			imgSrc: caixaMedicamento
+// 		},
+
+// 		{
+// 			medicamento: 'Aspirina',
+// 			laboratorio: 'Bayer',
+// 			dosagem: '500mg',
+// 			tipo: 'Medicamento Normal',
+// 			preco: 'R$ 10,80',
+// 			imgSrc: aspirina
+// 		},
+
+// 		{
+// 			medicamento: 'Ibuprofeno',
+// 			laboratorio: 'Medley',
+// 			dosagem: '400mg',
+// 			tipo: 'Medicamento Normal',
+// 			preco: 'R$ 14,70',
+// 			imgSrc: caixaMedicamento
+// 		},
+
+// 		{
+// 			medicamento: 'Dipirona Monoidratada',
+// 			laboratorio: 'EMS',
+// 			dosagem: '1g',
+// 			tipo: 'Medicamento Normal',
+// 			preco: 'R$ 17,20',
+// 			imgSrc: caixaMedicamento
+// 		},
+
+// 		{
+// 			medicamento: 'Paracetamol',
+// 			laboratorio: 'Ache',
+// 			dosagem: '750mg',
+// 			tipo: 'Medicamento Normal',
+// 			preco: 'R$ 8,50',
+// 			imgSrc: caixaMedicamento
+// 		},
+
+// 		{
+// 			medicamento: 'Rivotril',
+// 			laboratorio: 'Roche',
+// 			dosagem: '2,5mg/mL',
+// 			tipo: 'Medicamento Controlado',
+// 			preco: 'R$ 67,90',
+// 			imgSrc: caixaMedicamento
+// 		},
+
+// 		{
+// 			medicamento: 'Systane Complete',
+// 			laboratorio: 'Alcon',
+// 			dosagem: '10mL',
+// 			tipo: 'Medicamento Normal',
+// 			preco: 'R$ 52,60',
+// 			imgSrc: caixaMedicamento
+// 		},
+
+// 		{
+// 			medicamento: 'Hexomedine',
+// 			laboratorio: 'Sanofi',
+// 			dosagem: '0,5mg/mL',
+// 			tipo: 'Medicamento Controlado',
+// 			preco: 'R$ 74,30',
+// 			imgSrc: caixaMedicamento
+// 		},
+
+// 	];
+// 	return (
+// 		<div className="container">
+// 			<h1 className="title">Medicamentos</h1>
+
+// 			<Row>
+// 				{medicamentos.map((medicamento, index) => (
+// 					<Col key={index} md={4}>
+// 						<CardMedicamento {...medicamento} />
+// 					</Col>
+// 				))}
+// 			</Row>
+// 			<br /><br />
+// 		</div>
+// 	);
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//RASCUNHO DO CADASTRO DE MEDICAMENTOS
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import './FormNovoMedicamento.css';
+
+export const FormNovoMedicamento = () => {
+
+	//Salvar no localStorage
+
+	const [nomeMedicamento, setNomeMedicamento] = useState('');
+	const [laboratorio, setLaboratorio] = useState('');
+	
+
+	const [formMedicamentoValue, setFormMedicamentoValue] = useState('');
+
+	const handleFormSubmit = (event) => {
+		event.preventDefault();
+
+		const novamedicamento = {
+			nomeMedicamento,
+			laboratorio,
+			
+		}
+
+		try {
+			const formularioAtualizado = [...formMedicamentoValue, novamedicamento]
+			setFormMedicamentoValue(formularioAtualizado)
+
+			localStorage.setItem("dadosMedicamento", JSON.stringify(formularioAtualizado))
+
+			console.log("Dados salvos com sucesso!")
+			alert("Dados salvos com sucesso!");
+		} catch (error) {
+			console.log(error)
+		}
+	};
+
+	return (
+		<fieldset>
+			<Form className="FormCadastro"
+				onSubmit={handleFormSubmit}>
+				<div className="form-group row">
+					<Form.Group className="col-7" id="form_nome_medicamento">
+						<Form.Label>Nome do medicamento</Form.Label>
+						<Form.Control
+							type="text"
+							value={nomeMedicamento}
+							onChange={e => setNomeMedicamento(e.target.value)}
+						/>
+					</Form.Group>
+
+					<Form.Group className="col-5" id="form_laboratorio">
+						<Form.Label>Laboratório</Form.Label>
+						<Form.Control
+							type="text"
+							value={laboratorio}
+							onChange={e => setLaboratorio(e.target.value)}
+						/>
+					</Form.Group>
+				</div>
+
+				<div className="d-flex justify-content-end">
+					<Button
+						className="btn-envio ms-auto"
+						variant="success"
+						type="submit"
+						id="btn-cadastro">
+						Enviar Cadastro
+					</Button>
+				</div>
+			</Form> <br /> <br /> <br />
+		</fieldset>
+	);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //VERSÃO DO MAPA QUE FUNCIONA
 
 // import React, { useRef, useEffect } from 'react';

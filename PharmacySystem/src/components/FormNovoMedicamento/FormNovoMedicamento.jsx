@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './FormNovoMedicamento.css';
 
-export const FormNovoMedicamento = () => {
+export const FormNovoMedicamento = ({ setMedicamentos }) => {
 
 	//Salvar no localStorage
 
@@ -19,7 +19,7 @@ export const FormNovoMedicamento = () => {
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
 
-		const novamedicamento = {
+		const novomedicamento = {
 			nomeMedicamento,
 			laboratorio,
 			dosagem,
@@ -29,17 +29,41 @@ export const FormNovoMedicamento = () => {
 		}
 
 		try {
-			const formularioAtualizado = [...formMedicamentoValue, novamedicamento]
-			setFormMedicamentoValue(formularioAtualizado)
 
-			localStorage.setItem("dadosMedicamento", JSON.stringify(formularioAtualizado))
+			const dadosMedicamento = localStorage.getItem('dadosMedicamento');
+			let formularioAtualizado = [];
 
-			console.log("Dados salvos com sucesso!")
-			alert("Dados salvos com sucesso!");
+			if (dadosMedicamento) {
+				formularioAtualizado = JSON.parse(dadosMedicamento);
+			}
+
+			formularioAtualizado.push(novomedicamento);
+			localStorage.setItem('dadosMedicamento', JSON.stringify(formularioAtualizado));
+
+			setMedicamentos(formularioAtualizado);
+
+			console.log('Dados salvos com sucesso!');
+			alert('Dados salvos com sucesso!');
 		} catch (error) {
-			console.log(error)
-		}
-	};
+			console.log(error);
+		};
+	}
+
+
+	// 	const formularioAtualizado = [...formMedicamentoValue, novamedicamento]
+	// 	setFormMedicamentoValue(formularioAtualizado)
+
+	// 	localStorage.setItem("dadosMedicamento", JSON.stringify(formularioAtualizado))
+
+	// 	console.log("Dados salvos com sucesso!")
+	// 	alert("Dados salvos com sucesso!");
+
+	// 	//função callback
+	// 	onMedicamentoAdd(novamedicamento);
+
+	// } catch (error) {
+	// 	console.log(error)
+	// }
 
 	return (
 		<fieldset>
