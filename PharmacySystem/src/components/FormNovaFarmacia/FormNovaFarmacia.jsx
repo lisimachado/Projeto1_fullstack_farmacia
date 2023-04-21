@@ -4,10 +4,12 @@ import React, { useState } from 'react';
 import './FormNovaFarmacia.css';
 import axios from 'axios';
 import { IMaskInput } from 'react-imask';
-
-
+import { useNavigate } from 'react-router-dom';
+import { FarmaciasContext } from '../Context/ContextFarmacias';
 
 export const FormNovaFarmacia = () => {
+
+	const navigate = useNavigate();
 
 	const [razaoSocial, setRazaoSocial] = useState('');
 	const [codLoja, setCodLoja] = useState('');
@@ -23,8 +25,14 @@ export const FormNovaFarmacia = () => {
 	const [cidade, setCidade] = useState('');
 	const [uf, setUf] = useState('');
 	const [pais, setPais] = useState('');
+	const [latitude, setLatitude] = useState('');
+	const [longitude, setLongitude] = useState('');
 
 	const [formFarmaciaValue, setFormFarmaciaValue] = useState('');
+
+	function enderecoCompleto(logradouro, numero, bairro, cidade, uf) {
+		return `${logradouro}, ${numero}, ${bairro}, ${cidade} / ${uf}`;
+	}
 
 	//Salvar no localStorage
 
@@ -46,6 +54,10 @@ export const FormNovaFarmacia = () => {
 			cidade,
 			uf,
 			pais,
+			endereco: enderecoCompleto(logradouro, numero, bairro, cidade, uf),
+			latitude,
+			longitude,
+
 		}
 
 		try {
@@ -56,6 +68,8 @@ export const FormNovaFarmacia = () => {
 
 			console.log("Dados salvos com sucesso!")
 			alert("Dados salvos com sucesso!");
+			//Redireciona para a página onde há o mapa das farmácias
+			navigate('/farmacias');
 		} catch (error) {
 			console.log(error)
 		}
@@ -94,7 +108,16 @@ export const FormNovaFarmacia = () => {
 		setCidade("");
 		setUf("");
 		setPais("");
+		setLatitude("");
+		setLongitude("");
 	}
+
+
+	// //tentativa para atualizar estado e renderizar farmacia nova com context
+	// const { farmacias, salvarDadosFarmacia } = useContext(FarmaciasContext);
+	// salvarDadosFarmacia(FormNovaFarmacia);
+
+
 
 	//Formulário
 
@@ -251,6 +274,27 @@ export const FormNovaFarmacia = () => {
 					</Form.Group>
 				</div>
 
+				<div className="row d-flex justify-content-end ">
+					<Form.Group className="col-6" id="form_lat">
+						<Form.Label>Latitude</Form.Label>
+						<Form.Control
+							type="text"
+							value={latitude}
+							onChange={e => setLatitude(e.target.value)}
+						/>
+					</Form.Group>
+
+					<Form.Group className="col-6" id="form_lon">
+						<Form.Label>Longitude</Form.Label>
+						<Form.Control
+							type="text"
+							value={longitude}
+							onChange={e => setLongitude(e.target.value)}
+						/>
+					</Form.Group>
+
+				</div>
+
 				<div className="d-flex justify-content-end ">
 					<Button
 						className="btn-envio ms-auto"
@@ -264,7 +308,8 @@ export const FormNovaFarmacia = () => {
 						className="btn-envio ms-auto"
 						variant="success"
 						type="submit"
-						id="btn-cadastro">
+						id="btn-cadastro"
+					>
 						Enviar Cadastro
 					</Button>
 				</div>

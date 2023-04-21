@@ -1,3 +1,340 @@
+// import Button from 'react-bootstrap/Button';
+// import Form from 'react-bootstrap/Form';
+// import React, { useState } from 'react';
+// import './FormNovaFarmacia.css';
+
+// export const FormNovaFarmacia = () => {
+
+// 	const [razaoSocial, setRazaoSocial] = useState('');
+// 	const [latitude, setLatitude] = useState('');
+// 	const [longitude, setLongitude] = useState('');
+
+// 	const [formFarmaciaValue, setFormFarmaciaValue] = useState('');
+
+// 	//Salvar no localStorage
+
+// 	const handleFormSubmit = (event) => {
+// 		event.preventDefault();
+
+// 		const novafarmacia = {
+// 			razaoSocial,
+// 			latlng,
+// 			longitude,
+// 		}
+
+// 		try {
+// 			const formularioAtualizado = [...formFarmaciaValue, novafarmacia]
+// 			setFormFarmaciaValue(formularioAtualizado)
+
+// 			localStorage.setItem("dadosFarmacia", JSON.stringify(formularioAtualizado))
+
+// 			console.log("Dados salvos com sucesso!")
+// 			alert("Dados salvos com sucesso!");
+// 		} catch (error) {
+// 			console.log(error)
+// 		}
+// 	};
+
+// 	//Formulário
+
+// 	return (
+// 		<container className="container">
+
+// 			<Form className="FormCadastro"
+// 				onSubmit={handleFormSubmit}>
+// 						<Form.Group className="col-9" id="form_nome">
+// 						<Form.Label>Razão Social</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={razaoSocial}
+// 							onChange={e => setRazaoSocial(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+					
+// 					<Form.Group className="col-6" id="form_lat">
+// 						<Form.Label>Latitude</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={latitude}
+// 							onChange={e => setLatitude(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-6" id="form_lon">
+// 						<Form.Label>Longitude</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={longitude}
+// 							onChange={e => setLongitude(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Button
+// 						className="btn-envio ms-auto"
+// 						variant="success"
+// 						type="submit"
+// 						id="btn-cadastro">
+// 						Enviar Cadastro
+// 					</Button>
+// 			</Form>
+
+// 			{/* Ajuste para o footer não ficar sobrepondo o conteudo da página. */}
+// 		</container>
+// 	);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//VERSÃO DO MAPA QUE FUNCIONA
+
+// import React, { useRef, useEffect, useState } from 'react';
+// import L from 'leaflet';
+// import { renderToString } from 'react-dom/server';
+// import 'leaflet/dist/leaflet.css';
+// import './Mapa.css';
+
+// export const Mapa = () => {
+
+// 	const mapRef = useRef(null);
+
+// 	useEffect(() => {
+// 		// Renderiza o mapa na posição e com o zoom definidos
+// 		const map = L.map(mapRef.current).setView([-27.5998621, -48.5483227], 11);
+
+// 		// Adiciona o tile layer do OpenStreetMap
+// 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+// 			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+// 			maxZoom: 18,
+// 		}).addTo(map);
+
+// 		// Adiciona marcadores para as lojas
+// 		const lojasIniciais = [
+// 			{
+// 				cod: 'Loja 001',
+// 				cnpj: '42.589.746/0001-00',
+// 				razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// 				fantasia: 'PharmaLife',
+// 				email: 'contatoloja01@pharmalife.com.br',
+// 				telefone: '(48)8022-4000',
+// 				endereco: 'Rua Presidente Coutinho, 100, bairro Centro, Florianópolis/SC CEP 88.050-000',
+// 				latlng: [-27.5906434, -48.5506324]
+// 			},
+		
+// 		];
+
+// 		//Para pegar dados do LocalStorage
+// 		const [farmacia, setFarmacia] = useState([...lojasIniciais]);
+
+// 		useEffect(() => {
+// 			const dadosFarmacia = localStorage.getItem('dadosFarmacia');
+// 			if (dadosFarmacia) {
+// 				const farmaciasLocalStorage = JSON.parse(dadosFarmacia);
+// 				setFarmacia([...lojasIniciais, ...farmaciasLocalStorage]);
+// 			}
+// 		}, []);
+
+
+// 		lojasIniciais.forEach((loja) => {
+// 			const popupContent = (
+// 				<div>
+// 					<h5>{loja.fantasia}</h5>
+// 					<p>Razão social: {loja.razaoSocial}</p>
+// 					<p>CNPJ: {loja.cnpj}</p>
+// 					<p>Email: {loja.email}</p>
+// 					<p>Telefone: {loja.telefone}</p>
+// 					<p>Endereço: {loja.endereco}</p>
+// 				</div>
+// 			);
+// 			const popupHTML = renderToString(popupContent);
+// 			L.marker(loja.latlng).addTo(map).bindPopup(popupHTML);
+// 		});
+// 	}, []);
+
+// 	return <div style={{ height: '300px' }} ref={mapRef}></div>;
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //VERSÃO DO MAPA QUE FUNCIONA
+
+// import React, { useRef, useEffect } from 'react';
+// import L from 'leaflet';
+// import { renderToString } from 'react-dom/server';
+
+// import 'leaflet/dist/leaflet.css';
+// import './Mapa.css';
+
+// export const Mapa = () => {
+
+// 	const mapRef = useRef(null);
+
+// 	useEffect(() => {
+// 		// Renderiza o mapa na posição e com o zoom definidos
+// 		const map = L.map(mapRef.current).setView([-27.5998621, -48.5483227], 11);
+
+// 		// Adiciona o tile layer do OpenStreetMap
+// 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+// 			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+// 			maxZoom: 18,
+// 		}).addTo(map);
+
+// 		// Adiciona marcadores para as lojas
+// 		const lojas = [
+// 			{
+// 				cod: 'Loja 001',
+// 				cnpj: '42.589.746/0001-00',
+// 				razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// 				fantasia: 'PharmaLife',
+// 				email: 'contatoloja01@pharmalife.com.br',
+// 				telefone: '(48)8022-4000',
+// 				endereco: 'Rua Presidente Coutinho, 100, bairro Centro, Florianópolis/SC CEP 88.050-000',
+// 				latlng: [-27.5906434, -48.5506324]
+// 			},
+
+// 			{
+// 				cod: 'Loja 002',
+// 				cnpj: '42.589.746/0002-38',
+// 				razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// 				fantasia: 'PharmaLife',
+// 				email: 'contatoloja02@pharmalife.com.br',
+// 				telefone: '(48)8022-4001',
+// 				endereco: 'Rod Admar Gonzaga, 1022, bairro Itacorubi, Florianópolis/SC CEP 88.220-777',
+// 				latlng: [-27.5866780, -48.4989027],
+// 			},
+
+// 			{
+// 				cod: 'Loja 003',
+// 				cnpj: '42.589.746/0003-43',
+// 				razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// 				fantasia: 'PharmaLife',
+// 				email: 'contatoloja03@pharmalife.com.br',
+// 				telefone: '(48)8022-4002',
+// 				endereco: 'Rod Francisco Magno Vieira, 211, bairro Campeche, Florianópolis/SC CEP 88.051-300',
+// 				latlng: [-27.6620, -48.5013],
+// 			},
+
+// 			{
+// 				cod: 'Loja 004',
+// 				cnpj: '42.589.746/0004-14',
+// 				razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// 				fantasia: 'PharmaLife',
+// 				email: 'contatoloja04@pharmalife.com.br',
+// 				telefone: '(48)8022-4004',
+// 				endereco: 'Rua Lauro Linhares, 5757, bairro Trindade, Florianópolis/SC CEP 88.193-001',
+// 				latlng: [-27.5887649, -48.5224589],
+// 			},
+
+// 			{
+// 				cod: 'Loja 005',
+// 				cnpj: '42.589.746/0005-62',
+// 				razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// 				fantasia: 'PharmaLife',
+// 				email: 'contatoloja05@pharmalife.com.br',
+// 				telefone: '(48)8022-4005',
+// 				endereco: 'Rua dos Navegantes, 57, bairro Estreito, Florianópolis/SC CEP 88.200-951',
+// 				latlng: [-27.5851554, -48.5784047],
+// 			},
+
+// 			{
+// 				cod: 'Loja 006',
+// 				cnpj: '42.589.746/0006-11',
+// 				razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// 				fantasia: 'PharmaLife',
+// 				email: 'contatoloja06@pharmalife.com.br',
+// 				telefone: '(48)8022-4006',
+// 				endereco: 'Rua Dep Francisco Mascarenhas, 28, bairro Coqueiros, Florianópolis/SC CEP 88.018-551',
+// 				latlng: [-27.6122212, -48.5899312],
+// 			},
+// 		];
+
+// 		lojas.forEach((loja) => {
+// 			const popupContent = (
+// 				<div>
+// 					<h5>{loja.fantasia}</h5>
+// 					<p>Razão social: {loja.razaoSocial}</p>
+// 					<p>CNPJ: {loja.cnpj}</p>
+// 					<p>Email: {loja.email}</p>
+// 					<p>Telefone: {loja.telefone}</p>
+// 					<p>Endereço: {loja.endereco}</p>
+// 				</div>
+// 			);
+// 			const popupHTML = renderToString(popupContent);
+// 			L.marker(loja.latlng).addTo(map).bindPopup(popupHTML);
+// 		});
+// 	}, []);
+
+// 	return <div style={{ height: '300px' }} ref={mapRef}></div>;
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //PAGINA DE  FORMULARIO MEDICAMENTO FUNCIONANDO
 
 // import { useState } from 'react';

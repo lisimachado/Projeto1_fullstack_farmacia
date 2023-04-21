@@ -11,14 +11,11 @@ export const CardMedicamento = ({ nomeMedicamento, dosagem, precoMedicamento, la
 
 	return (
 		<Card className="bg-light my-3">
-			{/* <Card.Img variant="top" src={caixaMedicamento} style={{ width: '200px', margin: 'auto' }} /> */}
 			<Card.Body>
 				<Card.Title>{nomeMedicamento}</Card.Title>
 				<Card.Text>Laboratório: {laboratorio}</Card.Text>
 				<Card.Text>Dosagem: {dosagem}</Card.Text>
-				{/* <Card.Text>Tipo: {tipoMedicamento}</Card.Text> */}
 				<Card.Text>Preço: R${precoMedicamento}</Card.Text>
-				{/* <Card.Text>Descrição: {descricao}</Card.Text> */}
 				<Button variant="secondary" size="sm" onClick={handleModal} style={{ backgroundColor: '#b06d5a', border: 'none' }}>Mais detalhes</Button>
 			</Card.Body>
 
