@@ -2,8 +2,10 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './FormNovoMedicamento.css';
+import { useNavigate } from 'react-router-dom';
 
-export const FormNovoMedicamento = ({ setMedicamentos }) => {
+export const FormNovoMedicamento = () => {
+	const navigate = useNavigate(); // Importando useNavigate
 
 	//Salvar no localStorage
 
@@ -19,7 +21,7 @@ export const FormNovoMedicamento = ({ setMedicamentos }) => {
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
 
-		const novomedicamento = {
+		const novoMedicamento = {
 			nomeMedicamento,
 			laboratorio,
 			dosagem,
@@ -29,41 +31,31 @@ export const FormNovoMedicamento = ({ setMedicamentos }) => {
 		}
 
 		try {
+			const dadosMedicamentos = JSON.parse(localStorage.getItem("dadosMedicamento")) || [];
+			const formularioAtualizado = [...formMedicamentoValue, novoMedicamento];
+			localStorage.setItem("dadosMedicamento", JSON.stringify(formularioAtualizado));
+			setFormMedicamentoValue(formularioAtualizado);
 
-			const dadosMedicamento = localStorage.getItem('dadosMedicamento');
-			let formularioAtualizado = [];
+			limparDados(); // Limpa os dados após o envio
+			window.alert("Dados salvos com sucesso!");
 
-			if (dadosMedicamento) {
-				formularioAtualizado = JSON.parse(dadosMedicamento);
-			}
-
-			formularioAtualizado.push(novomedicamento);
-			localStorage.setItem('dadosMedicamento', JSON.stringify(formularioAtualizado));
-
-			setMedicamentos(formularioAtualizado);
-
-			console.log('Dados salvos com sucesso!');
-			alert('Dados salvos com sucesso!');
+			console.log("Dados salvos com sucesso!");
+			navigate("/medicamentos");
 		} catch (error) {
 			console.log(error);
-		};
+		}
 	}
 
-
-	// 	const formularioAtualizado = [...formMedicamentoValue, novamedicamento]
-	// 	setFormMedicamentoValue(formularioAtualizado)
-
-	// 	localStorage.setItem("dadosMedicamento", JSON.stringify(formularioAtualizado))
-
-	// 	console.log("Dados salvos com sucesso!")
-	// 	alert("Dados salvos com sucesso!");
-
-	// 	//função callback
-	// 	onMedicamentoAdd(novamedicamento);
-
-	// } catch (error) {
-	// 	console.log(error)
-	// }
+	//Limpar os campos dos inputs
+	const limparDados = () => {
+		setNomeMedicamento("");
+		setLaboratorio("");
+		setDosagem("");
+		setTipoMedicamento("");
+		setPrecoMedicamento("");
+		setDescricao("");
+		window.alert("Dados limpos com sucesso!");
+	};
 
 	return (
 		<fieldset>
@@ -118,10 +110,6 @@ export const FormNovoMedicamento = ({ setMedicamentos }) => {
 							type="number"
 							value={precoMedicamento}
 							onChange={e => setPrecoMedicamento(e.target.value)}
-						// 	ref={inputRef}
-						// 	value={value}
-						// 	onInput={onInput}
-						//  value={preco} onChange={handlePriceChange} onBlur={handlePriceBlur} 
 						/>
 					</Form.Group>
 				</div>
@@ -137,6 +125,14 @@ export const FormNovoMedicamento = ({ setMedicamentos }) => {
 				</div>
 
 				<div className="d-flex justify-content-end">
+					<Button
+						className="btn-envio ms-auto"
+						variant="secondary"
+						id="btn-cadastro"
+						onClick={limparDados}>
+						Limpar Dados
+					</Button>
+
 					<Button
 						className="btn-envio ms-auto"
 						variant="success"

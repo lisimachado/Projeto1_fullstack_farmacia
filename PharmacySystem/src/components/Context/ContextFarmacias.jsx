@@ -28,7 +28,9 @@ const FarmaciasProvider = ({ children }) => {
 		} else {
 			setLojas(lojasIniciais);
 		}
-	}, []);
+	}, [lojas, setLojas]);
+
+
 
 	return (
 		<FarmaciasContext.Provider value={{ lojas, setLojas }}>

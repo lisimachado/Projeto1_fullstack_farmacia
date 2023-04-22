@@ -7,32 +7,6 @@ export function Mapa() {
 	const position = [-27.5998621, -48.5483227];
 	const { lojas } = useContext(FarmaciasContext);
 
-	// const lojasIniciais = [
-	// 	{
-	// 		cod: 'Loja 001',
-	// 		CNPJ: '42.589.746/0001-00',
-	// 		razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
-	// 		fantasia: 'PharmaLife',
-	// 		email: 'contatoloja01@pharmalife.com.br',
-	// 		telefone: '(48)8022-4000',
-	// 		endereco: 'Rua Presidente Coutinho, 100, bairro Centro, Florianópolis/SC CEP 88.050-000',
-	// 		latitude: '-27.5906434',
-	// 		longitude: '-48.5506324',
-	// 	},
-	// ];
-
-	//const [lojas, setLojas] = useState([]);
-
-	// useEffect(() => {
-	// 	const dadosArmazenados = JSON.parse(localStorage.getItem("dadosFarmacia"));
-	// 	if (dadosArmazenados) {
-	// 		setLojas([...lojasIniciais, ...dadosArmazenados]);
-	// 	} else {
-	// 		setLojas(lojasIniciais);
-	// 	}
-	// }, []);
-
-
 	return (
 		<MapContainer center={position} zoom={12} style={{ height: '300px' }}>
 

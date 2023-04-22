@@ -112,54 +112,10 @@ export const FormNovaFarmacia = () => {
 		setLongitude("");
 	}
 
-
-	// //tentativa para atualizar estado e renderizar farmacia nova com context
-	// const { farmacias, salvarDadosFarmacia } = useContext(FarmaciasContext);
-	// salvarDadosFarmacia(FormNovaFarmacia);
-
-	/////////TENTATIVA DE NÃO PRECISAR DAR F5 NO MAPA
-
-	// const FormularioFarmacia = (props) => {
-
-	// 	const [novaFarmacia, setNovaFarmacia] = useState({
-	// 		cod: '',
-	// 		cnpj: '',
-	// 		razaoSocial: '',
-	// 		fantasia: '',
-	// 		email: '',
-	// 		telefone: '',
-	// 		endereco: '',
-	// 		latitude: '',
-	// 		longitude: '',
-	// 	});
-
-	// 	const handleInputChange = (event) => {
-	// 		const { nome, value }
-	// 	}
-	// };
-
-
-
-
-
-	///ATÉ AQUI A TENTATIVA 
-
-
-
-
-
-
-
-
-
 	//Formulário
 
 	return (
-		<container className="container"
-		// //TENTATIVA PARA PEGAR DO LOCALSTORAGE
-		// CadastroFarmacia atualizarLojas={atualizarLojas}
-		>
-
+		<container className="container">
 			<Form className="FormCadastro"
 				onSubmit={handleFormSubmit}>
 				<div className="form-group row">
