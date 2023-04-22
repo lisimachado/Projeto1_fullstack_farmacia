@@ -117,6 +117,39 @@ export const FormNovaFarmacia = () => {
 	// const { farmacias, salvarDadosFarmacia } = useContext(FarmaciasContext);
 	// salvarDadosFarmacia(FormNovaFarmacia);
 
+	/////////TENTATIVA DE NÃO PRECISAR DAR F5 NO MAPA
+
+	// const FormularioFarmacia = (props) => {
+
+	// 	const [novaFarmacia, setNovaFarmacia] = useState({
+	// 		cod: '',
+	// 		cnpj: '',
+	// 		razaoSocial: '',
+	// 		fantasia: '',
+	// 		email: '',
+	// 		telefone: '',
+	// 		endereco: '',
+	// 		latitude: '',
+	// 		longitude: '',
+	// 	});
+
+	// 	const handleInputChange = (event) => {
+	// 		const { nome, value }
+	// 	}
+	// };
+
+
+
+
+
+	///ATÉ AQUI A TENTATIVA 
+
+
+
+
+
+
+
 
 
 	//Formulário

@@ -4,15 +4,15 @@ import { Footer } from './components/Footer/Footer';
 import { FarmaciasProvider } from './components/Context/ContextFarmacias';
 
 export const App = () => {
-  return (
-    <FarmaciasProvider>
-      <div>
-        <Header />
-        <Outlet />
-        <Footer />
-      </div>
-    </FarmaciasProvider>
-  );
+	return (
+		<FarmaciasProvider>
+			<div>
+				<Header />
+				<Outlet />
+				<Footer />
+			</div>
+		</FarmaciasProvider>
+	);
 };
 
 
@@ -26,11 +26,12 @@ export const App = () => {
 
 
 // export const App = () => {
-//   return (
-//     <div>
+// 	return (
+// 		<div>
 // 			<Header />
 // 			<Outlet />
 // 			<Footer />
-      
+
 // 		</div>
-// )};
+// 	)
+// };

@@ -27,23 +27,26 @@ const FarmaciasProvider = ({ children }) => {
 			const farmaciasLocalStorage = JSON.parse(dadosFarmacia);
 			setFarmacias([...lojasIniciais, ...farmaciasLocalStorage]);
 		}
+		//ALTERAÇÃO INCLUIDA
+		else {
+			setFarmacias([...lojasIniciais]);
+		}
 	}, []);
 
 
-	// //PARA ATUALIZAR ESTADO
-	// const salvarDadosFarmacia = (dadosFarmacia) => {
-	// 	setFarmacias((farmaciasAntigas) => [...farmaciasAntigas, dadosFarmacia]);
-	// 	localStorage.setItem(
-	// 		'dadosFarmacia',
-	// 		JSON.stringify([...lojasIniciais, dadosFarmacia])
-	// 	);
-	// };
+	//ALTERAÇÃO INCLUIDA
+	useEffect(() => {
+		localStorage.setItem('dadosFarmacia', JSON.stringify(farmacias.slice(lojasIniciais.length)));
+	}, [farmacias]);
 
-	// const contextValue = {
-	// 	farmacias,
-	// 	setFarmacias,
-	// 	salvarDadosFarmacia,
-	// };
+
+
+	//ALTERAÇÃO INCLUIDA
+	// função para adicionar uma nova farmácia ao estado 'farmacias'
+	const adicionarFarmacia = (novaFarmacia) => {
+		setFarmacias((farmaciasAntigas) => [...farmaciasAntigas, novaFarmacia]);
+	};
+
 
 	return (
 		<FarmaciasContext.Provider value={{ farmacias, setFarmacias }}>
