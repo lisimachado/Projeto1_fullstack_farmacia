@@ -1,88 +1,88 @@
-// import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
-// import React, { useState } from 'react';
-// import './FormNovaFarmacia.css';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import React, { useState } from 'react';
+import './FormNovaFarmacia.css';
 
-// export const FormNovaFarmacia = () => {
+export const FormNovaFarmacia = () => {
 
-// 	const [razaoSocial, setRazaoSocial] = useState('');
-// 	const [latitude, setLatitude] = useState('');
-// 	const [longitude, setLongitude] = useState('');
+	const [razaoSocial, setRazaoSocial] = useState('');
+	const [latitude, setLatitude] = useState('');
+	const [longitude, setLongitude] = useState('');
 
-// 	const [formFarmaciaValue, setFormFarmaciaValue] = useState('');
+	const [formFarmaciaValue, setFormFarmaciaValue] = useState('');
 
-// 	//Salvar no localStorage
+	//Salvar no localStorage
 
-// 	const handleFormSubmit = (event) => {
-// 		event.preventDefault();
+	const handleFormSubmit = (event) => {
+		event.preventDefault();
 
-// 		const novafarmacia = {
-// 			razaoSocial,
-// 			latlng,
-// 			longitude,
-// 		}
+		const novafarmacia = {
+			razaoSocial,
+			latlng,
+			longitude,
+		}
 
-// 		try {
-// 			const formularioAtualizado = [...formFarmaciaValue, novafarmacia]
-// 			setFormFarmaciaValue(formularioAtualizado)
+		try {
+			const formularioAtualizado = [...formFarmaciaValue, novafarmacia]
+			setFormFarmaciaValue(formularioAtualizado)
 
-// 			localStorage.setItem("dadosFarmacia", JSON.stringify(formularioAtualizado))
+			localStorage.setItem("dadosFarmacia", JSON.stringify(formularioAtualizado))
 
-// 			console.log("Dados salvos com sucesso!")
-// 			alert("Dados salvos com sucesso!");
-// 		} catch (error) {
-// 			console.log(error)
-// 		}
-// 	};
+			console.log("Dados salvos com sucesso!")
+			alert("Dados salvos com sucesso!");
+		} catch (error) {
+			console.log(error)
+		}
+	};
 
-// 	//Formulário
+	//Formulário
 
-// 	return (
-// 		<container className="container">
+	return (
+		<container className="container">
 
-// 			<Form className="FormCadastro"
-// 				onSubmit={handleFormSubmit}>
-// 						<Form.Group className="col-9" id="form_nome">
-// 						<Form.Label>Razão Social</Form.Label>
-// 						<Form.Control
-// 							type="text"
-// 							value={razaoSocial}
-// 							onChange={e => setRazaoSocial(e.target.value)}
-// 						/>
-// 					</Form.Group>
+			<Form className="FormCadastro"
+				onSubmit={handleFormSubmit}>
+						<Form.Group className="col-9" id="form_nome">
+						<Form.Label>Razão Social</Form.Label>
+						<Form.Control
+							type="text"
+							value={razaoSocial}
+							onChange={e => setRazaoSocial(e.target.value)}
+						/>
+					</Form.Group>
 
 					
-// 					<Form.Group className="col-6" id="form_lat">
-// 						<Form.Label>Latitude</Form.Label>
-// 						<Form.Control
-// 							type="text"
-// 							value={latitude}
-// 							onChange={e => setLatitude(e.target.value)}
-// 						/>
-// 					</Form.Group>
+					<Form.Group className="col-6" id="form_lat">
+						<Form.Label>Latitude</Form.Label>
+						<Form.Control
+							type="text"
+							value={latitude}
+							onChange={e => setLatitude(e.target.value)}
+						/>
+					</Form.Group>
 
-// 					<Form.Group className="col-6" id="form_lon">
-// 						<Form.Label>Longitude</Form.Label>
-// 						<Form.Control
-// 							type="text"
-// 							value={longitude}
-// 							onChange={e => setLongitude(e.target.value)}
-// 						/>
-// 					</Form.Group>
+					<Form.Group className="col-6" id="form_lon">
+						<Form.Label>Longitude</Form.Label>
+						<Form.Control
+							type="text"
+							value={longitude}
+							onChange={e => setLongitude(e.target.value)}
+						/>
+					</Form.Group>
 
-// 					<Button
-// 						className="btn-envio ms-auto"
-// 						variant="success"
-// 						type="submit"
-// 						id="btn-cadastro">
-// 						Enviar Cadastro
-// 					</Button>
-// 			</Form>
+					<Button
+						className="btn-envio ms-auto"
+						variant="success"
+						type="submit"
+						id="btn-cadastro">
+						Enviar Cadastro
+					</Button>
+			</Form>
 
-// 			{/* Ajuste para o footer não ficar sobrepondo o conteudo da página. */}
-// 		</container>
-// 	);
-// }
+			{/* Ajuste para o footer não ficar sobrepondo o conteudo da página. */}
+		</container>
+	);
+}
 
 
 
