@@ -5,7 +5,7 @@ import './FormNovaFarmacia.css';
 import axios from 'axios';
 import { IMaskInput } from 'react-imask';
 import { useNavigate } from 'react-router-dom';
-import { FarmaciasContext } from '../Context/ContextFarmacias';
+//import { FarmaciasContext } from '../Context/ContextFarmacias';
 
 export const FormNovaFarmacia = () => {
 
@@ -116,6 +116,39 @@ export const FormNovaFarmacia = () => {
 	// //tentativa para atualizar estado e renderizar farmacia nova com context
 	// const { farmacias, salvarDadosFarmacia } = useContext(FarmaciasContext);
 	// salvarDadosFarmacia(FormNovaFarmacia);
+
+	/////////TENTATIVA DE NÃO PRECISAR DAR F5 NO MAPA
+
+	// const FormularioFarmacia = (props) => {
+
+	// 	const [novaFarmacia, setNovaFarmacia] = useState({
+	// 		cod: '',
+	// 		cnpj: '',
+	// 		razaoSocial: '',
+	// 		fantasia: '',
+	// 		email: '',
+	// 		telefone: '',
+	// 		endereco: '',
+	// 		latitude: '',
+	// 		longitude: '',
+	// 	});
+
+	// 	const handleInputChange = (event) => {
+	// 		const { nome, value }
+	// 	}
+	// };
+
+
+
+
+
+	///ATÉ AQUI A TENTATIVA 
+
+
+
+
+
+
 
 
 
