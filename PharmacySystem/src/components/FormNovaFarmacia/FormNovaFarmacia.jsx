@@ -5,7 +5,7 @@ import './FormNovaFarmacia.css';
 import axios from 'axios';
 import { IMaskInput } from 'react-imask';
 import { useNavigate } from 'react-router-dom';
-import { FarmaciasContext } from '../Context/ContextFarmacias';
+//import { FarmaciasContext } from '../Context/ContextFarmacias';
 
 export const FormNovaFarmacia = () => {
 

@@ -3,6 +3,7 @@ import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { FarmaciasProvider } from './components/Context/ContextFarmacias';
 
+
 export const App = () => {
 	return (
 		<FarmaciasProvider>
