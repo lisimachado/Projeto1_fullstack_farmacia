@@ -33,7 +33,6 @@ export const FormNovoMedicamento = () => {
 		}
 
 		try {
-
 			const dadosMedicamento = localStorage.getItem('dadosMedicamento');
 			let formularioAtualizado = [...formMedicamentoValue];
 
@@ -76,6 +75,7 @@ export const FormNovoMedicamento = () => {
 							type="text"
 							value={nomeMedicamento}
 							onChange={e => setNomeMedicamento(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -85,6 +85,7 @@ export const FormNovoMedicamento = () => {
 							type="text"
 							value={laboratorio}
 							onChange={e => setLaboratorio(e.target.value)}
+							required
 						/>
 					</Form.Group>
 				</div>
@@ -96,6 +97,7 @@ export const FormNovoMedicamento = () => {
 							type="text"
 							value={dosagem}
 							onChange={e => setDosagem(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -104,7 +106,8 @@ export const FormNovoMedicamento = () => {
 						<Form.Select
 							aria-label="Selecione o tipo de medicamento"
 							value={tipoMedicamento}
-							onChange={(e) => setTipoMedicamento(e.target.value)}>
+							onChange={(e) => setTipoMedicamento(e.target.value)}
+							required>
 							<option value="">Selecione uma opção</option>
 							<option value="Medicamento controlado">Medicamento controlado</option>
 							<option value="Medicamento comum">Medicamento comum</option>
@@ -115,6 +118,7 @@ export const FormNovoMedicamento = () => {
 					<Form.Group className="col-3" id="form_preco">
 						<Form.Label>Valor</Form.Label>
 						<Form.Control
+							required
 							mask="R$ num"
 							radix=","
 							blocks={{

@@ -13,6 +13,7 @@ export const FormNovaFarmacia = () => {
 	const [CNPJ, setCNPJ] = useState('');
 	const [email, setEmail] = useState('');
 	const [telefone, setTelefone] = useState('');
+	const [celular, setCelular] = useState('');
 	const [cep, setCep] = useState('');
 	const [logradouro, setLogradouro] = useState('');
 	const [numero, setNumero] = useState('');
@@ -37,6 +38,7 @@ export const FormNovaFarmacia = () => {
 			CNPJ,
 			email,
 			telefone,
+			celular,
 			cep,
 			logradouro,
 			numero,
@@ -101,6 +103,7 @@ export const FormNovaFarmacia = () => {
 		setCNPJ("");
 		setEmail("");
 		setTelefone("");
+		setCelular("");
 		setCep("");
 		setLogradouro("");
 		setNumero("");
@@ -125,6 +128,7 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={razaoSocial}
 							onChange={e => setRazaoSocial(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -134,7 +138,8 @@ export const FormNovaFarmacia = () => {
 							as={IMaskInput}
 							mask="0000"
 							value={codLoja}
-							onChange={e => setCodLoja(e.target.value)} />
+							onChange={e => setCodLoja(e.target.value)}
+							required />
 					</Form.Group>
 				</div>
 
@@ -143,7 +148,8 @@ export const FormNovaFarmacia = () => {
 						<Form.Label>Nome Fantasia</Form.Label>
 						<Form.Control type="textarea"
 							value={fantasia}
-							onChange={e => setFantasia(e.target.value)} />
+							onChange={e => setFantasia(e.target.value)}
+							required />
 					</Form.Group>
 
 					<Form.Group className="col-4" id="form_CNPJ">
@@ -154,27 +160,41 @@ export const FormNovaFarmacia = () => {
 							inputMode="numeric"
 							value={CNPJ}
 							onChange={e => setCNPJ(e.target.value)}
+							required
 						/>
 					</Form.Group>
 				</div>
 
 				<div className="form-group row">
-					<Form.Group className="col-8" id="form_email">
+					<Form.Group className="col-6" id="form_email">
 						<Form.Label>E-mail</Form.Label>
 						<Form.Control type="email"
 							value={email}
 							onChange={e => setEmail(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
-					<Form.Group className="col-4" id="form_telefone">
-						<Form.Label>Telefone Celular</Form.Label>
+					<Form.Group className="col-3" id="form_telefone">
+						<Form.Label>Telefone</Form.Label>
 						<Form.Control
 							type="tel"
 							as={IMaskInput}
 							mask="(00)00000-0000"
 							value={telefone}
 							onChange={e => setTelefone(e.target.value)}
+						/>
+					</Form.Group>
+
+					<Form.Group className="col-3">
+						<Form.Label>Telefone Celular</Form.Label>
+						<Form.Control
+							type="tel"
+							as={IMaskInput}
+							mask="(00)00000-0000"
+							value={celular}
+							onChange={e => setCelular(e.target.value)}
+							required
 						/>
 					</Form.Group>
 				</div>
@@ -186,13 +206,16 @@ export const FormNovaFarmacia = () => {
 							as={IMaskInput}
 							mask="00000000"
 							value={cep}
-							onChange={(e) => setCep(e.target.value)} />
+							onChange={(e) => setCep(e.target.value)}
+							required />
 					</Form.Group>
 
 					<Form.Group className="col-2">
 						<Button id="btnCep"
 							onClick={buscarCep}
+							required
 							variant="secondary">Buscar CEP</Button>
+
 					</Form.Group>
 
 					<Form.Group className="col-7" id="form_logradouro">
@@ -201,6 +224,7 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={logradouro}
 							onChange={e => setLogradouro(e.target.value)}
+							required
 						/>
 					</Form.Group>
 				</div>
@@ -213,6 +237,7 @@ export const FormNovaFarmacia = () => {
 							inputMode="numeric"
 							value={numero}
 							onChange={e => setNumero(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -230,6 +255,7 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={bairro}
 							onChange={e => setBairro(e.target.value)}
+							required
 						/>
 					</Form.Group>
 				</div>
@@ -241,6 +267,7 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={cidade}
 							onChange={e => setCidade(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -250,6 +277,7 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={uf}
 							onChange={e => setUf(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -259,6 +287,7 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={pais}
 							onChange={e => setPais(e.target.value)}
+							required
 						/>
 					</Form.Group>
 				</div>
@@ -270,6 +299,7 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={latitude}
 							onChange={e => setLatitude(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -279,6 +309,7 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={longitude}
 							onChange={e => setLongitude(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
