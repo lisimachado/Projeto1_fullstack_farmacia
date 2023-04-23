@@ -14,7 +14,6 @@ export const CardMedicamento = ({ nomeMedicamento, dosagem, precoMedicamento, la
 			<Card.Body>
 				<Card.Title>{nomeMedicamento}</Card.Title>
 				<Card.Text>Laboratório: {laboratorio}</Card.Text>
-				<Card.Text>Dosagem: {dosagem}</Card.Text>
 				<Card.Text>Preço: R${precoMedicamento}</Card.Text>
 				<Button variant="secondary" size="sm" onClick={handleModal} style={{ backgroundColor: '#b06d5a', border: 'none' }}>Mais detalhes</Button>
 			</Card.Body>
@@ -25,7 +24,8 @@ export const CardMedicamento = ({ nomeMedicamento, dosagem, precoMedicamento, la
 				</Modal.Header>
 				<Modal.Body>
 					<img variant="top" src={caixaMedicamento} style={{ width: '200px', margin: 'auto' }} />
-					<h4>Tipo: {tipoMedicamento}</h4>
+					<h5>Dosagem: {dosagem}</h5>
+					<h5>{tipoMedicamento}</h5>
 					<p>{descricao}</p>
 				</Modal.Body>
 				<Modal.Footer>

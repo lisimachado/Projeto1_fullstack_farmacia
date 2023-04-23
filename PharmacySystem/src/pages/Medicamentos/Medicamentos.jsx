@@ -42,7 +42,7 @@ const medicamentosIniciais = [
 		tipoMedicamento: 'Medicamento Normal',
 		precoMedicamento: '17,20',
 		imgSrc: caixaMedicamento,
-		decricao: 'Descrição do medicamento: A dipirona é utilizada para alívio da dor, como outros analgésicos. Porém, como sua efetividade pode superar outros medicamentos, sem mencionar que também possui ação antitérmica, ela costuma ser indicada com mais frequência.'
+		descricao: 'Descrição do medicamento: A dipirona é utilizada para alívio da dor, como outros analgésicos. Porém, como sua efetividade pode superar outros medicamentos, sem mencionar que também possui ação antitérmica, ela costuma ser indicada com mais frequência.'
 	},
 
 	{
