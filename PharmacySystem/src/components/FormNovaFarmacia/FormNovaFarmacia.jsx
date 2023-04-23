@@ -21,7 +21,6 @@ export const FormNovaFarmacia = () => {
 	const [bairro, setBairro] = useState('');
 	const [cidade, setCidade] = useState('');
 	const [uf, setUf] = useState('');
-	const [pais, setPais] = useState('');
 	const [latitude, setLatitude] = useState('');
 	const [longitude, setLongitude] = useState('');
 
@@ -46,15 +45,14 @@ export const FormNovaFarmacia = () => {
 			bairro,
 			cidade,
 			uf,
-			pais,
-			endereco: enderecoCompleto(logradouro, numero, bairro, cidade, uf),
+			endereco: enderecoCompleto(logradouro, numero, complemento, bairro, cidade, uf),
 			latitude,
 			longitude,
 		}
 
 		//PARA CONCATENAR O ENDEREÇO NO POPUP
-		function enderecoCompleto(logradouro, numero, bairro, cidade, uf) {
-			return `${logradouro}, ${numero}, ${bairro}, ${cidade} / ${uf}`;
+		function enderecoCompleto(logradouro, numero, complemento, bairro, cidade, uf) {
+			return `${logradouro}, ${numero} ${complemento}, ${bairro}, ${cidade} / ${uf}`;
 		}
 
 		try {
@@ -92,7 +90,6 @@ export const FormNovaFarmacia = () => {
 		setBairro(dados.bairro)
 		setCidade(dados.localidade)
 		setUf(dados.uf)
-		setPais(dados.pais)
 	}
 
 	//LIMPAR OS CAMPOS DOS INPUTS
@@ -111,7 +108,6 @@ export const FormNovaFarmacia = () => {
 		setBairro("");
 		setCidade("");
 		setUf("");
-		setPais("");
 		setLatitude("");
 		setLongitude("");
 	}
@@ -180,7 +176,7 @@ export const FormNovaFarmacia = () => {
 						<Form.Control
 							type="tel"
 							as={IMaskInput}
-							mask="(00)00000-0000"
+							mask="(00)0000-0000"
 							value={telefone}
 							onChange={e => setTelefone(e.target.value)}
 						/>
@@ -261,7 +257,7 @@ export const FormNovaFarmacia = () => {
 				</div>
 
 				<div className="form-group row">
-					<Form.Group className="col-6" id="form_cidade">
+					<Form.Group className="col-8" id="form_cidade">
 						<Form.Label>Cidade</Form.Label>
 						<Form.Control
 							type="text"
@@ -271,22 +267,12 @@ export const FormNovaFarmacia = () => {
 						/>
 					</Form.Group>
 
-					<Form.Group className="col-2" id="form_uf">
+					<Form.Group className="col-4" id="form_uf">
 						<Form.Label>Estado/UF</Form.Label>
 						<Form.Control
 							type="text"
 							value={uf}
 							onChange={e => setUf(e.target.value)}
-							required
-						/>
-					</Form.Group>
-
-					<Form.Group className="col-4" id="form_pais">
-						<Form.Label>País</Form.Label>
-						<Form.Control
-							type="text"
-							value={pais}
-							onChange={e => setPais(e.target.value)}
 							required
 						/>
 					</Form.Group>
