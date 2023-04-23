@@ -4,12 +4,8 @@ import React, { useState } from 'react';
 import './FormNovaFarmacia.css';
 import axios from 'axios';
 import { IMaskInput } from 'react-imask';
-import { useNavigate } from 'react-router-dom';
-//import { FarmaciasContext } from '../Context/ContextFarmacias';
 
 export const FormNovaFarmacia = () => {
-
-	const navigate = useNavigate();
 
 	const [razaoSocial, setRazaoSocial] = useState('');
 	const [codLoja, setCodLoja] = useState('');
@@ -30,16 +26,11 @@ export const FormNovaFarmacia = () => {
 
 	const [formFarmaciaValue, setFormFarmaciaValue] = useState('');
 
-	function enderecoCompleto(logradouro, numero, bairro, cidade, uf) {
-		return `${logradouro}, ${numero}, ${bairro}, ${cidade} / ${uf}`;
-	}
-
-	//Salvar no localStorage
-
+	//SALVAR NO LOCALSTORAGE
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
 
-		const novafarmacia = {
+		const novaFarmacia = {
 			codLoja,
 			razaoSocial,
 			fantasia,
@@ -57,24 +48,34 @@ export const FormNovaFarmacia = () => {
 			endereco: enderecoCompleto(logradouro, numero, bairro, cidade, uf),
 			latitude,
 			longitude,
+		}
 
+		//PARA CONCATENAR O ENDEREÇO NO POPUP
+		function enderecoCompleto(logradouro, numero, bairro, cidade, uf) {
+			return `${logradouro}, ${numero}, ${bairro}, ${cidade} / ${uf}`;
 		}
 
 		try {
-			const formularioAtualizado = [...formFarmaciaValue, novafarmacia]
-			setFormFarmaciaValue(formularioAtualizado)
 
-			localStorage.setItem("dadosFarmacia", JSON.stringify(formularioAtualizado))
+			const dadosFarmacia = localStorage.getItem('dadosFarmacia');
+			let formularioAtualizado = [...formFarmaciaValue];
 
-			console.log("Dados salvos com sucesso!")
-			alert("Dados salvos com sucesso!");
-			//Redireciona para a página onde há o mapa das farmácias
-			navigate('/farmacias');
+			if (dadosFarmacia) {
+				formularioAtualizado = JSON.parse(dadosFarmacia);
+			}
+
+			formularioAtualizado.push(novaFarmacia);
+			localStorage.setItem('dadosFarmacia', JSON.stringify(formularioAtualizado));
+
+			setFormFarmaciaValue(formularioAtualizado);
+
+			console.log('Dados salvos com sucesso!');
+			alert('Dados salvos com sucesso!');
+			limparDados(); // Limpa os dados após o envio
 		} catch (error) {
-			console.log(error)
-		}
-	};
-
+			console.log(error);
+		};
+	}
 
 	//FUNÇÃO DE BUSCAO CEP NA API
 	const buscarCep = () => {
@@ -92,7 +93,7 @@ export const FormNovaFarmacia = () => {
 		setPais(dados.pais)
 	}
 
-	//Limpar os campos dos inputs
+	//LIMPAR OS CAMPOS DOS INPUTS
 	const limparDados = () => {
 		setRazaoSocial("");
 		setCodLoja("");
@@ -112,8 +113,7 @@ export const FormNovaFarmacia = () => {
 		setLongitude("");
 	}
 
-	//Formulário
-
+	//FORMULÁRIO
 	return (
 		<container className="container">
 			<Form className="FormCadastro"
@@ -306,6 +306,6 @@ export const FormNovaFarmacia = () => {
 
 			{/* Ajuste para o footer não ficar sobrepondo o conteudo da página. */}
 			<br /><br /><br />
-		</container>
+		</container >
 	);
 }
