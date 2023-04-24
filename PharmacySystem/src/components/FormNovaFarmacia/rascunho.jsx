@@ -1,88 +1,959 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import React, { useState } from 'react';
-import './FormNovaFarmacia.css';
 
-export const FormNovaFarmacia = () => {
+///VERSÃO ARQUIVO CONTEXT
+// import React, { useState, useEffect, createContext } from 'react';
 
-	const [razaoSocial, setRazaoSocial] = useState('');
-	const [latitude, setLatitude] = useState('');
-	const [longitude, setLongitude] = useState('');
+// export const FarmaciasContext = createContext();
 
-	const [formFarmaciaValue, setFormFarmaciaValue] = useState('');
+// export const FarmaciasProvider = ({ children }) => {
 
-	//Salvar no localStorage
+// 	// Adiciona marcadores para as lojas
+// 	const lojasIniciais = [
+// 		{
+// 			cod: 'Loja 001',
+// 			cnpj: '42.589.746/0001-00',
+// 			razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// 			fantasia: 'PharmaLife',
+// 			email: 'contatoloja01@pharmalife.com.br',
+// 			telefone: '(48)8022-4000',
+// 			endereco: 'Rua Presidente Coutinho, 100, bairro Centro, Florianópolis/SC CEP 88.050-000',
+// 			latitude: '-27.5906434',
+// 			longitude: '-48.5506324',
+// 		},
+// 	];
 
-	const handleFormSubmit = (event) => {
-		event.preventDefault();
+// 	const [lojas, setLojas] = useState([]);
 
-		const novafarmacia = {
-			razaoSocial,
-			latlng,
-			longitude,
-		}
+// 	useEffect(() => {
+// 		const dadosArmazenados = JSON.parse(localStorage.getItem("dadosFarmacia"));
+// 		if (dadosArmazenados) {
+// 			setLojas([...lojasIniciais, ...dadosArmazenados]);
+// 		} else {
+// 			setLojas(lojasIniciais);
+// 		}
+// 	}, []);
 
-		try {
-			const formularioAtualizado = [...formFarmaciaValue, novafarmacia]
-			setFormFarmaciaValue(formularioAtualizado)
+// 	const [formFarmaciaValue, setFormFarmaciaValue] = useState('');
 
-			localStorage.setItem("dadosFarmacia", JSON.stringify(formularioAtualizado))
+// 	try {
+// 		const formularioAtualizado = [...formFarmaciaValue, novafarmacia]
+// 		setFormFarmaciaValue(formularioAtualizado)
 
-			console.log("Dados salvos com sucesso!")
-			alert("Dados salvos com sucesso!");
-		} catch (error) {
-			console.log(error)
-		}
-	};
+// 		localStorage.setItem("dadosFarmacia", JSON.stringify(formularioAtualizado))
 
-	//Formulário
+// 		console.log("Dados salvos com sucesso!")
+// 		alert("Dados salvos com sucesso!");
+// 		//Redireciona para a página onde há o mapa das farmácias
+// 		navigate('/farmacias');
+// 	} catch (error) {
+// 		console.log(error)
+// 	}
 
-	return (
-		<container className="container">
 
-			<Form className="FormCadastro"
-				onSubmit={handleFormSubmit}>
-						<Form.Group className="col-9" id="form_nome">
-						<Form.Label>Razão Social</Form.Label>
-						<Form.Control
-							type="text"
-							value={razaoSocial}
-							onChange={e => setRazaoSocial(e.target.value)}
-						/>
-					</Form.Group>
+
+// 	return (
+// 		<FarmaciasContext.Provider value={{ lojas, setLojas }}>
+// 			{children}
+// 		</FarmaciasContext.Provider>
+// 	);
+
+// }
+//export { FarmaciasContext, FarmaciasProvider };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 	const [farmacias, setFarmacias] = useState([...lojasIniciais]);
+
+// 	useEffect(() => {
+// 		const dadosFarmacia = localStorage.getItem('dadosFarmacia');
+// 		if (dadosFarmacia) {
+// 			const farmaciasLocalStorage = JSON.parse(dadosFarmacia);
+// 			setFarmacias([...lojasIniciais, ...farmaciasLocalStorage]);
+// 		}
+// 		//ALTERAÇÃO INCLUIDA
+// 		else {
+// 			setFarmacias([...lojasIniciais]);
+// 		}
+// 	}, []);
+
+
+// 	//ALTERAÇÃO INCLUIDA
+// 	useEffect(() => {
+// 		localStorage.setItem('dadosFarmacia', JSON.stringify(farmacias.slice(lojasIniciais.length)));
+// 	}, [farmacias]);
+
+
+
+// 	//ALTERAÇÃO INCLUIDA
+// 	// função para adicionar uma nova farmácia ao estado 'farmacias'
+// 	const adicionarFarmacia = (novaFarmacia) => {
+// 		setFarmacias((farmaciasAntigas) => [...farmaciasAntigas, novaFarmacia]);
+// 	};
+
+
+// 	return (
+// 		<FarmaciasContext.Provider value={{ farmacias, setFarmacias }}>
+// 			{children}
+// 		</FarmaciasContext.Provider>
+// 	);
+// };
+
+// export { FarmaciasContext, FarmaciasProvider };
+
+
+
+// // {
+// // 	cod: 'Loja 002',
+// // 	cnpj: '42.589.746/0002-38',
+// // 	razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// // 	fantasia: 'PharmaLife',
+// // 	email: 'contatoloja02@pharmalife.com.br',
+// // 	telefone: '(48)8022-4001',
+// // 	endereco: 'Rod Admar Gonzaga, 1022, bairro Itacorubi, Florianópolis/SC CEP 88.220-777',
+// // 	latitude: '-27.5866780',
+// // 	longitude: '-48.4989027',
+// // },
+
+// // {
+// // 	cod: 'Loja 003',
+// // 	cnpj: '42.589.746/0003-43',
+// // 	razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// // 	fantasia: 'PharmaLife',
+// // 	email: 'contatoloja03@pharmalife.com.br',
+// // 	telefone: '(48)8022-4002',
+// // 	endereco: 'Rod Francisco Magno Vieira, 211, bairro Campeche, Florianópolis/SC CEP 88.051-300',
+// // 	latitude: '-27.6620',
+// // 	longitude: '-48.5013',
+// // },
+
+// // {
+// // 	cod: 'Loja 004',
+// // 	cnpj: '42.589.746/0004-14',
+// // 	razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// // 	fantasia: 'PharmaLife',
+// // 	email: 'contatoloja04@pharmalife.com.br',
+// // 	telefone: '(48)8022-4004',
+// // 	endereco: 'Rua Lauro Linhares, 5757, bairro Trindade, Florianópolis/SC CEP 88.193-001',
+// // 	latitude: '-27.5887649',
+// // 	longitude: '-48.5224589',
+// // },
+
+// // {
+// // 	cod: 'Loja 005',
+// // 	cnpj: '42.589.746/0005-62',
+// // 	razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// // 	fantasia: 'PharmaLife',
+// // 	email: 'contatoloja05@pharmalife.com.br',
+// // 	telefone: '(48)8022-4005',
+// // 	endereco: 'Rua dos Navegantes, 57, bairro Estreito, Florianópolis/SC CEP 88.200-951',
+// // 	latitude: '-27.5851554',
+// // 	longitude: '-48.5784047',
+// // },
+
+// // {
+// // 	cod: 'Loja 006',
+// // 	cnpj: '42.589.746/0006-11',
+// // 	razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// // 	fantasia: 'PharmaLife',
+// // 	email: 'contatoloja06@pharmalife.com.br',
+// // 	telefone: '(48)8022-4006',
+// // 	endereco: 'Rua Dep Francisco Mascarenhas, 28, bairro Coqueiros, Florianópolis/SC CEP 88.018-551',
+// // 	latitude: '-27.6122212',
+// // 	longitude: '-48.5899312',
+// // },
+
+
+
+
+
+///VERSÃO FORM NOVA FARMACIA
+// import Button from 'react-bootstrap/Button';
+// import Form from 'react-bootstrap/Form';
+// import React, { useState } from 'react';
+// import './FormNovaFarmacia.css';
+// import axios from 'axios';
+// import { IMaskInput } from 'react-imask';
+// import { useNavigate } from 'react-router-dom';
+// //import { FarmaciasContext } from '../Context/ContextFarmacias';
+
+// export const FormNovaFarmacia = () => {
+
+// 	const navigate = useNavigate();
+
+// 	const [razaoSocial, setRazaoSocial] = useState('');
+// 	const [codLoja, setCodLoja] = useState('');
+// 	const [fantasia, setFantasia] = useState('');
+// 	const [CNPJ, setCNPJ] = useState('');
+// 	const [email, setEmail] = useState('');
+// 	const [telefone, setTelefone] = useState('');
+// 	const [cep, setCep] = useState('');
+// 	const [logradouro, setLogradouro] = useState('');
+// 	const [numero, setNumero] = useState('');
+// 	const [complemento, setComplemento] = useState('');
+// 	const [bairro, setBairro] = useState('');
+// 	const [cidade, setCidade] = useState('');
+// 	const [uf, setUf] = useState('');
+// 	const [pais, setPais] = useState('');
+// 	const [latitude, setLatitude] = useState('');
+// 	const [longitude, setLongitude] = useState('');
+
+// 	const [formFarmaciaValue, setFormFarmaciaValue] = useState('');
+
+// 	function enderecoCompleto(logradouro, numero, bairro, cidade, uf) {
+// 		return `${logradouro}, ${numero}, ${bairro}, ${cidade} / ${uf}`;
+// 	}
+
+// 	//Salvar no localStorage
+
+// 	const handleFormSubmit = (event) => {
+// 		event.preventDefault();
+
+// 		const novafarmacia = {
+// 			codLoja,
+// 			razaoSocial,
+// 			fantasia,
+// 			CNPJ,
+// 			email,
+// 			telefone,
+// 			cep,
+// 			logradouro,
+// 			numero,
+// 			complemento,
+// 			bairro,
+// 			cidade,
+// 			uf,
+// 			pais,
+// 			endereco: enderecoCompleto(logradouro, numero, bairro, cidade, uf),
+// 			latitude,
+// 			longitude,
+
+// 		}
+
+// 		try {
+// 			const formularioAtualizado = [...formFarmaciaValue, novafarmacia]
+// 			setFormFarmaciaValue(formularioAtualizado)
+
+// 			localStorage.setItem("dadosFarmacia", JSON.stringify(formularioAtualizado))
+
+// 			console.log("Dados salvos com sucesso!")
+// 			alert("Dados salvos com sucesso!");
+// 			//Redireciona para a página onde há o mapa das farmácias
+// 			navigate('/farmacias');
+// 		} catch (error) {
+// 			console.log(error)
+// 		}
+// 	};
+
+
+
+
+
+
+
+
+	
+
+// 	//FUNÇÃO DE BUSCAO CEP NA API
+// 	const buscarCep = () => {
+// 		fetch(`https://viacep.com.br/ws/${cep}/json/`)
+// 			.then((resposta) => resposta.json())
+// 			.then((dados) => preencherEndereco(dados));
+// 	};
+
+// 	//FUNÇÃO DE PREENCHER OS DADOS DO FORMULÁRIO
+// 	const preencherEndereco = (dados) => {
+// 		setLogradouro(dados.logradouro)
+// 		setBairro(dados.bairro)
+// 		setCidade(dados.localidade)
+// 		setUf(dados.uf)
+// 		setPais(dados.pais)
+// 	}
+
+// 	//Limpar os campos dos inputs
+// 	const limparDados = () => {
+// 		setRazaoSocial("");
+// 		setCodLoja("");
+// 		setFantasia("");
+// 		setCNPJ("");
+// 		setEmail("");
+// 		setTelefone("");
+// 		setCep("");
+// 		setLogradouro("");
+// 		setNumero("");
+// 		setComplemento("");
+// 		setBairro("");
+// 		setCidade("");
+// 		setUf("");
+// 		setPais("");
+// 		setLatitude("");
+// 		setLongitude("");
+// 	}
+
+// 	//Formulário
+
+// 	return (
+// 		<container className="container">
+// 			<Form className="FormCadastro"
+// 				onSubmit={handleFormSubmit}>
+// 				<div className="form-group row">
+// 					<Form.Group className="col-9" id="form_nome">
+// 						<Form.Label>Razão Social</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={razaoSocial}
+// 							onChange={e => setRazaoSocial(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-3" id="form_codigo">
+// 						<Form.Label>Código da Loja</Form.Label>
+// 						<Form.Control
+// 							as={IMaskInput}
+// 							mask="0000"
+// 							value={codLoja}
+// 							onChange={e => setCodLoja(e.target.value)} />
+// 					</Form.Group>
+// 				</div>
+
+// 				<div className="form-group row">
+// 					<Form.Group className="col-8" id="form_fantasia">
+// 						<Form.Label>Nome Fantasia</Form.Label>
+// 						<Form.Control type="textarea"
+// 							value={fantasia}
+// 							onChange={e => setFantasia(e.target.value)} />
+// 					</Form.Group>
+
+// 					<Form.Group className="col-4" id="form_CNPJ">
+// 						<Form.Label>CNPJ</Form.Label>
+// 						<Form.Control
+// 							as={IMaskInput}
+// 							mask="00.000.000/0000-00"
+// 							inputMode="numeric"
+// 							value={CNPJ}
+// 							onChange={e => setCNPJ(e.target.value)}
+// 						/>
+// 					</Form.Group>
+// 				</div>
+
+// 				<div className="form-group row">
+// 					<Form.Group className="col-8" id="form_email">
+// 						<Form.Label>E-mail</Form.Label>
+// 						<Form.Control type="email"
+// 							value={email}
+// 							onChange={e => setEmail(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-4" id="form_telefone">
+// 						<Form.Label>Telefone Celular</Form.Label>
+// 						<Form.Control
+// 							type="tel"
+// 							as={IMaskInput}
+// 							mask="(00)00000-0000"
+// 							value={telefone}
+// 							onChange={e => setTelefone(e.target.value)}
+// 						/>
+// 					</Form.Group>
+// 				</div>
+
+// 				<div className="row">
+// 					<Form.Group className="col-3" id="form_cep">
+// 						<Form.Label>CEP</Form.Label>
+// 						<Form.Control
+// 							as={IMaskInput}
+// 							mask="00000000"
+// 							value={cep}
+// 							onChange={(e) => setCep(e.target.value)} />
+// 					</Form.Group>
+
+// 					<Form.Group className="col-2">
+// 						<Button id="btnCep"
+// 							onClick={buscarCep}
+// 							variant="secondary">Buscar CEP</Button>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-7" id="form_logradouro">
+// 						<Form.Label>Logradouro</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={logradouro}
+// 							onChange={e => setLogradouro(e.target.value)}
+// 						/>
+// 					</Form.Group>
+// 				</div>
+
+// 				<br />
+// 				<div className="form-group row">
+// 					<Form.Group className="col-3" id="form_numero">
+// 						<Form.Label>Número</Form.Label>
+// 						<Form.Control type="number"
+// 							inputMode="numeric"
+// 							value={numero}
+// 							onChange={e => setNumero(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-4" id="form_complemento">
+// 						<Form.Label>Complemento</Form.Label>
+// 						<Form.Control type="text"
+// 							value={complemento}
+// 							onChange={e => setComplemento(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-5" id="form_bairro">
+// 						<Form.Label>Bairro</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={bairro}
+// 							onChange={e => setBairro(e.target.value)}
+// 						/>
+// 					</Form.Group>
+// 				</div>
+
+// 				<div className="form-group row">
+// 					<Form.Group className="col-6" id="form_cidade">
+// 						<Form.Label>Cidade</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={cidade}
+// 							onChange={e => setCidade(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-2" id="form_uf">
+// 						<Form.Label>Estado/UF</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={uf}
+// 							onChange={e => setUf(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-4" id="form_pais">
+// 						<Form.Label>País</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={pais}
+// 							onChange={e => setPais(e.target.value)}
+// 						/>
+// 					</Form.Group>
+// 				</div>
+
+// 				<div className="row d-flex justify-content-end ">
+// 					<Form.Group className="col-6" id="form_lat">
+// 						<Form.Label>Latitude</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={latitude}
+// 							onChange={e => setLatitude(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-6" id="form_lon">
+// 						<Form.Label>Longitude</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={longitude}
+// 							onChange={e => setLongitude(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 				</div>
+
+// 				<div className="d-flex justify-content-end ">
+// 					<Button
+// 						className="btn-envio ms-auto"
+// 						variant="secondary"
+// 						id="btn-cadastro"
+// 						onClick={limparDados}>
+// 						Limpar Dados
+// 					</Button>
+
+// 					<Button
+// 						className="btn-envio ms-auto"
+// 						variant="success"
+// 						type="submit"
+// 						id="btn-cadastro"
+// 					>
+// 						Enviar Cadastro
+// 					</Button>
+// 				</div>
+// 			</Form>
+
+// 			{/* Ajuste para o footer não ficar sobrepondo o conteudo da página. */}
+// 			<br /><br /><br />
+// 		</container>
+// 	);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////VERSÃO DO MAPA NOVO QUE FUNCIONA
+// import React, { useState, useEffect, useContext } from 'react';
+// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+// import 'leaflet/dist/leaflet.css';
+// import { FarmaciasContext } from '../Context/ContextFarmacias';
+
+// export function Mapa() {
+// 	const position = [-27.5998621, -48.5483227];
+// 	const { lojas } = useContext(FarmaciasContext);
+
+// 	// const lojasIniciais = [
+// 	// 	{
+// 	// 		cod: 'Loja 001',
+// 	// 		CNPJ: '42.589.746/0001-00',
+// 	// 		razaoSocial: 'LABPharmacy Comércio de Produtos Farmacêuticos S.A.',
+// 	// 		fantasia: 'PharmaLife',
+// 	// 		email: 'contatoloja01@pharmalife.com.br',
+// 	// 		telefone: '(48)8022-4000',
+// 	// 		endereco: 'Rua Presidente Coutinho, 100, bairro Centro, Florianópolis/SC CEP 88.050-000',
+// 	// 		latitude: '-27.5906434',
+// 	// 		longitude: '-48.5506324',
+// 	// 	},
+// 	// ];
+
+// 	//const [lojas, setLojas] = useState([]);
+
+// 	// useEffect(() => {
+// 	// 	const dadosArmazenados = JSON.parse(localStorage.getItem("dadosFarmacia"));
+// 	// 	if (dadosArmazenados) {
+// 	// 		setLojas([...lojasIniciais, ...dadosArmazenados]);
+// 	// 	} else {
+// 	// 		setLojas(lojasIniciais);
+// 	// 	}
+// 	// }, []);
+
+
+// 	return (
+// 		<MapContainer center={position} zoom={12} style={{ height: '300px' }}>
+
+// 			<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+// 			{lojas.map((loja) => (
+// 				<Marker position={[loja.latitude, loja.longitude]} key={loja.cod}>
+// 					<Popup>
+// 						<div>
+// 							<h5>{loja.fantasia}</h5>
+// 							<p>Razão social: {loja.razaoSocial}</p>
+// 							<p>CNPJ: {loja.CNPJ}</p>
+// 							<p>Email: {loja.email}</p>
+// 							<p>Telefone: {loja.telefone}</p>
+// 							<p>Endereço: {loja.endereco}</p>
+// 						</div>
+// 					</Popup>
+// 				</Marker>
+// 			))}
+// 		</MapContainer>
+// 	);
+// }
+
+
+
+
+
+// import React, { useState } from "react";
+// import { useForm } from "react-hook-form";
+// import { useNavigate } from "react-router-dom";
+// import { Form } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
+// import { Col } from "react-bootstrap";
+// import { Row } from "react-bootstrap";
+
+// export function PharmaFormStore() {
+//     const history = useNavigate();
+//     const { register, formState: { errors }, handleSubmit, setValue } = useForm();
+//     const [endereco, setEndereco] = useState();
+//     const [formulario, setFormulario] = useState({
+//         cep: '',
+//     });
+
+//     const atualizarCep = (campo, valor) => {
+//         const novoFormulario = { ...formulario, [campo]: valor };
+//         setFormulario(novoFormulario);
+//         console.log(novoFormulario);
+//     };
+
+//     const buscarCep = () => {
+//         if (formulario.cep.length !== 8) {
+//             alert('CEP inválido');
+//             return;
+//         }
+//         fetch(`https://viacep.com.br/ws/${formulario.cep}/json/`)
+//             .then((response) => response.json())
+//             .then((data) => {
+//                 setEndereco(data)
+
+//                 setValue('logradouro', data.logradouro);
+//                 setValue('unidade', data.unidade);
+//                 setValue('bairro', data.bairro);
+//                 setValue('complemento', data.complemento);
+//                 setValue('localidade', data.localidade);
+//                 setValue('uf', data.uf);
+
+//                 console.log(data);
+//             });
+//     };
+
+//     const onSubmit = (pharmadata) => {
+//         fetch('http://localhost:5000/pharmacys', {
+//             method: 'POST',
+//             body: JSON.stringify(pharmadata),
+//             headers: {
+//                 'Content-Type': 'application/json; charset=UTF-8',
+//             },
+//         })
+//             .then(() => console.log(pharmadata))
+//             .catch((err) => console.log(err));
+//     };
+
+//     function handleGoBack() {
+//         history(-1);
+//     }
+
+// return (
+	
+// 		<container className="container">
+// 			<h2>Cadastrar nova Farmácia </h2>
+
+// 			<Form className="FormCadastro"
+// 				onSubmit={handleSubmit}>
+// 				<div className="form-group row">
+// 					<Form.Group className="col-9">
+// 						<Form.Label>Razão Social</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							{...register("razaosocial", { required: true })}
+//               aria-invalid={errors.razaosocial ? "true" : "false"}
+// 						/>
+// 							{errors.razaosocial?.type === 'required' && <p role="alert">Razão Social Obrigatório</p>}
+// 					</Form.Group>
+
+// 					</div>
+
+// 				<div className="form-group row">
+// 					<Form.Group className="col-4" >
+// 						<Form.Label>CNPJ</Form.Label>
+// 						<Form.Control
+// 							as={IMaskInput}
+// 							mask="00.000.000/0000-00"
+// 							inputMode="numeric"
+// 							{...register("CNPJ", { required: "CNPJ Obrigatório" })}
+// 							aria-invalid={errors.CNPJ ? "true" : "false"} />
+// 							{errors.cnpj && <p role="alert">{errors.CNPJ?.message}</p>}
+// 						</Form.Group>
+
+// 						<Form.Group className="col-8" >
+// 						<Form.Label>Nome Fantasia</Form.Label>
+// 						<Form.Control type="textarea"
+// 						{...register("fantasia", { required: true })}
+// 						aria-invalid={errors.fantasia ? "true" : "false"}
+// 						/>
+// 						{errors.fantasia?.type === 'required' && <p role="alert">Nome Obrigatório</p>}
+// 					</Form.Group>
+// 				</div>
+
+// 				<div className="form-group row">
+// 					<Form.Group className="col-8" id="form_email">
+// 						<Form.Label>E-mail</Form.Label>
+// 						<Form.Control type="email"
+// 							value={email}
+// 							onChange={e => setEmail(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-4" id="form_telefone">
+// 						<Form.Label>Telefone Celular</Form.Label>
+// 						<Form.Control
+// 							type="tel"
+// 							as={IMaskInput}
+// 							mask="(00)00000-0000"
+// 							value={telefone}
+// 							onChange={e => setTelefone(e.target.value)}
+// 						/>
+// 					</Form.Group>
+// 				</div>
+
+// 				<div className="row">
+// 					<Form.Group className="col-3" id="form_cep">
+// 						<Form.Label>CEP</Form.Label>
+// 						<Form.Control
+// 							as={IMaskInput}
+// 							mask="00000000"
+// 							value={cep}
+// 							onChange={(e) => setCep(e.target.value)} />
+// 					</Form.Group>
+
+// 					<Form.Group className="col-2">
+// 						<Button id="btnCep"
+// 							onClick={buscarCep}
+// 							variant="secondary">Buscar CEP</Button>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-7" id="form_logradouro">
+// 						<Form.Label>Logradouro</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={logradouro}
+// 							onChange={e => setLogradouro(e.target.value)}
+// 						/>
+// 					</Form.Group>
+// 				</div>
+
+// 				<br />
+// 				<div className="form-group row">
+// 					<Form.Group className="col-3" id="form_numero">
+// 						<Form.Label>Número</Form.Label>
+// 						<Form.Control type="number"
+// 							inputMode="numeric"
+// 							value={numero}
+// 							onChange={e => setNumero(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-4" id="form_complemento">
+// 						<Form.Label>Complemento</Form.Label>
+// 						<Form.Control type="text"
+// 							value={complemento}
+// 							onChange={e => setComplemento(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-5" id="form_bairro">
+// 						<Form.Label>Bairro</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={bairro}
+// 							onChange={e => setBairro(e.target.value)}
+// 						/>
+// 					</Form.Group>
+// 				</div>
+
+// 				<div className="form-group row">
+// 					<Form.Group className="col-6" id="form_cidade">
+// 						<Form.Label>Cidade</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={cidade}
+// 							onChange={e => setCidade(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-2" id="form_uf">
+// 						<Form.Label>Estado/UF</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={uf}
+// 							onChange={e => setUf(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-4" id="form_pais">
+// 						<Form.Label>País</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={pais}
+// 							onChange={e => setPais(e.target.value)}
+// 						/>
+// 					</Form.Group>
+// 				</div>
+
+// 				<div className="row d-flex justify-content-end ">
+// 					<Form.Group className="col-6" id="form_lat">
+// 						<Form.Label>Latitude</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={latitude}
+// 							onChange={e => setLatitude(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 					<Form.Group className="col-6" id="form_lon">
+// 						<Form.Label>Longitude</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={longitude}
+// 							onChange={e => setLongitude(e.target.value)}
+// 						/>
+// 					</Form.Group>
+
+// 				</div>
+
+// 				<div className="d-flex justify-content-end ">
+// 					<Button
+// 						className="btn-envio ms-auto"
+// 						variant="secondary"
+// 						id="btn-cadastro"
+// 						onClick={limparDados}>
+// 						Limpar Dados
+// 					</Button>
+
+// 					<Button
+// 						className="btn-envio ms-auto"
+// 						variant="success"
+// 						type="submit"
+// 						id="btn-cadastro"
+// 					>
+// 						Enviar Cadastro
+// 					</Button>
+// 				</div>
+// 			</Form>
+
+// 			{/* Ajuste para o footer não ficar sobrepondo o conteudo da página. */}
+// 			<br /><br /><br />
+// 		</container>
+// 	);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import Button from 'react-bootstrap/Button';
+// import Form from 'react-bootstrap/Form';
+// import React, { useState } from 'react';
+// import './FormNovaFarmacia.css';
+
+// export const FormNovaFarmacia = () => {
+
+// 	const [razaoSocial, setRazaoSocial] = useState('');
+// 	const [latitude, setLatitude] = useState('');
+// 	const [longitude, setLongitude] = useState('');
+
+// 	const [formFarmaciaValue, setFormFarmaciaValue] = useState('');
+
+// 	//Salvar no localStorage
+
+// 	const handleFormSubmit = (event) => {
+// 		event.preventDefault();
+
+// 		const novafarmacia = {
+// 			razaoSocial,
+// 			latlng,
+// 			longitude,
+// 		}
+
+// 		try {
+// 			const formularioAtualizado = [...formFarmaciaValue, novafarmacia]
+// 			setFormFarmaciaValue(formularioAtualizado)
+
+// 			localStorage.setItem("dadosFarmacia", JSON.stringify(formularioAtualizado))
+
+// 			console.log("Dados salvos com sucesso!")
+// 			alert("Dados salvos com sucesso!");
+// 		} catch (error) {
+// 			console.log(error)
+// 		}
+// 	};
+
+// 	//Formulário
+
+// 	return (
+// 		<container className="container">
+
+// 			<Form className="FormCadastro"
+// 				onSubmit={handleFormSubmit}>
+// 						<Form.Group className="col-9" id="form_nome">
+// 						<Form.Label>Razão Social</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={razaoSocial}
+// 							onChange={e => setRazaoSocial(e.target.value)}
+// 						/>
+// 					</Form.Group>
 
 					
-					<Form.Group className="col-6" id="form_lat">
-						<Form.Label>Latitude</Form.Label>
-						<Form.Control
-							type="text"
-							value={latitude}
-							onChange={e => setLatitude(e.target.value)}
-						/>
-					</Form.Group>
+// 					<Form.Group className="col-6" id="form_lat">
+// 						<Form.Label>Latitude</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={latitude}
+// 							onChange={e => setLatitude(e.target.value)}
+// 						/>
+// 					</Form.Group>
 
-					<Form.Group className="col-6" id="form_lon">
-						<Form.Label>Longitude</Form.Label>
-						<Form.Control
-							type="text"
-							value={longitude}
-							onChange={e => setLongitude(e.target.value)}
-						/>
-					</Form.Group>
+// 					<Form.Group className="col-6" id="form_lon">
+// 						<Form.Label>Longitude</Form.Label>
+// 						<Form.Control
+// 							type="text"
+// 							value={longitude}
+// 							onChange={e => setLongitude(e.target.value)}
+// 						/>
+// 					</Form.Group>
 
-					<Button
-						className="btn-envio ms-auto"
-						variant="success"
-						type="submit"
-						id="btn-cadastro">
-						Enviar Cadastro
-					</Button>
-			</Form>
+// 					<Button
+// 						className="btn-envio ms-auto"
+// 						variant="success"
+// 						type="submit"
+// 						id="btn-cadastro">
+// 						Enviar Cadastro
+// 					</Button>
+// 			</Form>
 
-			{/* Ajuste para o footer não ficar sobrepondo o conteudo da página. */}
-		</container>
-	);
-}
+// 			{/* Ajuste para o footer não ficar sobrepondo o conteudo da página. */}
+// 		</container>
+// 	);
+// }
 
 
 

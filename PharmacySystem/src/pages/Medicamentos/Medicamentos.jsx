@@ -10,7 +10,7 @@ const medicamentosIniciais = [
 		laboratorio: 'Biosintética',
 		dosagem: '5mg',
 		tipoMedicamento: 'Medicamento Normal',
-		precoMedicamento: '49,71',
+		precoMedicamento: 'R$ 49,71',
 		imgSrc: caixaMedicamento,
 		descricao: 'Descrição do medicamento: A desloratadina é indicada para o alívio dos sintomas associados à rinite alérgica, como: coriza (corrimento nasal), espirros e prurido nasal (coceira no nariz), ardor e prurido ocular (coceira nos olhos), lacrimejamento, prurido do palato (coceira no céu da boca) e tosse.'
 	},
@@ -20,7 +20,7 @@ const medicamentosIniciais = [
 		laboratorio: 'Bayer',
 		dosagem: '500mg',
 		tipoMedicamento: 'Medicamento Normal',
-		precoMedicamento: '10,80',
+		precoMedicamento: 'R$ 10,80',
 		imgSrc: caixaMedicamento,
 		descricao: 'Descrição do medicamento: Tem ação analgésica, antitérmica e anti-inflamatória e é indicado para o alívio da dor.'
 	},
@@ -30,7 +30,7 @@ const medicamentosIniciais = [
 		laboratorio: 'Medley',
 		dosagem: '400mg',
 		tipoMedicamento: 'Medicamento Normal',
-		precoMedicamento: '14,70',
+		precoMedicamento: 'R$ 14,70',
 		imgSrc: caixaMedicamento,
 		descricao: 'Descrição do medicamento: Ibuprofeno é um medicamento analgésico e anti-inflamatório, indicado para o alívio de dores e febre decorrentes de gripes e resfriados. Também colabora com a redução de dores de garganta, de cabeça, de dente, dor nas costas, cólicas menstruais e dores musculares.'
 	},
@@ -40,9 +40,9 @@ const medicamentosIniciais = [
 		laboratorio: 'EMS',
 		dosagem: '1g',
 		tipoMedicamento: 'Medicamento Normal',
-		precoMedicamento: '17,20',
+		precoMedicamento: 'R$ 17,20',
 		imgSrc: caixaMedicamento,
-		decricao: 'Descrição do medicamento: A dipirona é utilizada para alívio da dor, como outros analgésicos. Porém, como sua efetividade pode superar outros medicamentos, sem mencionar que também possui ação antitérmica, ela costuma ser indicada com mais frequência.'
+		descricao: 'Descrição do medicamento: A dipirona é utilizada para alívio da dor, como outros analgésicos. Porém, como sua efetividade pode superar outros medicamentos, sem mencionar que também possui ação antitérmica, ela costuma ser indicada com mais frequência.'
 	},
 
 	{
@@ -50,7 +50,7 @@ const medicamentosIniciais = [
 		laboratorio: 'Ache',
 		dosagem: '750mg',
 		tipoMedicamento: 'Medicamento Normal',
-		precoMedicamento: '8,50',
+		precoMedicamento: 'R$ 8,50',
 		imgSrc: caixaMedicamento,
 		descricao: 'Descrição do medicamento: Paracetamol é um medicamento indicado para o tratamento de febre e também colabora com auxílio temporário a dores leves e moderadas. Pode ser utilizado na redução de dores relacionadas à resfriados, como dor de cabeça e dor de garganta. Ainda é efetivo para reduzir o desconforto da dor de dente.'
 	},
@@ -60,7 +60,7 @@ const medicamentosIniciais = [
 		laboratorio: 'Roche',
 		dosagem: '2,5mg/mL',
 		tipoMedicamento: 'Medicamento Controlado',
-		precoMedicamento: '67,90',
+		precoMedicamento: 'R$ 67,90',
 		imgSrc: caixaMedicamento,
 		descricao: 'Descrição do medicamento: Rivotril pertence à classe dos benzodiazepínicos, medicamentos que causam inibição leve do sistema nervoso, com consequente ação anticonvulsivante, sedativa leve, relaxante muscular e tranquilizante.'
 	},
@@ -70,7 +70,7 @@ const medicamentosIniciais = [
 		laboratorio: 'Alcon',
 		dosagem: '10mL',
 		tipoMedicamento: 'Medicamento Normal',
-		precoMedicamento: '52,60',
+		precoMedicamento: 'R$ 52,60',
 		imgSrc: caixaMedicamento,
 		descricao: 'Descrição do medicamento: O Lubrificante Oftálmico Systane Complete é indicado para o alívio temporário de ardor e irritação devido à secura dos olhos.'
 	},
@@ -80,7 +80,7 @@ const medicamentosIniciais = [
 		laboratorio: 'Sanofi',
 		dosagem: '0,5mg/mL',
 		tipoMedicamento: 'Medicamento Controlado',
-		precoMedicamento: '74,30',
+		precoMedicamento: 'R$ 74,30',
 		imgSrc: caixaMedicamento,
 		descricao: 'Descrição do medicamento: Hexomedine é um spray oral com ação antisséptica e anestésica local. O medicamento trata as inflamações da cavidade oral e garganta, inibindo a multiplicação de microrganismos presentes na mucosa em caso de faringites, aftas, estomatites e inflamação e infecção na garganta que acometem as amígdalas e faringe.'
 	},

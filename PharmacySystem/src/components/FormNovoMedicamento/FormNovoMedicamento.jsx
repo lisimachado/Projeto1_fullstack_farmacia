@@ -2,8 +2,12 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './FormNovoMedicamento.css';
+import { useNavigate } from 'react-router-dom';
+import { IMaskInput } from 'react-imask';
 
-export const FormNovoMedicamento = ({ setMedicamentos }) => {
+export const FormNovoMedicamento = () => {
+
+	const navigate = useNavigate(); // Importando useNavigate
 
 	//Salvar no localStorage
 
@@ -19,7 +23,7 @@ export const FormNovoMedicamento = ({ setMedicamentos }) => {
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
 
-		const novomedicamento = {
+		const novoMedicamento = {
 			nomeMedicamento,
 			laboratorio,
 			dosagem,
@@ -29,41 +33,36 @@ export const FormNovoMedicamento = ({ setMedicamentos }) => {
 		}
 
 		try {
-
 			const dadosMedicamento = localStorage.getItem('dadosMedicamento');
-			let formularioAtualizado = [];
+			let formularioAtualizado = [...formMedicamentoValue];
 
 			if (dadosMedicamento) {
 				formularioAtualizado = JSON.parse(dadosMedicamento);
 			}
 
-			formularioAtualizado.push(novomedicamento);
+			formularioAtualizado.push(novoMedicamento);
 			localStorage.setItem('dadosMedicamento', JSON.stringify(formularioAtualizado));
 
-			setMedicamentos(formularioAtualizado);
+			setFormMedicamentoValue(formularioAtualizado);
 
 			console.log('Dados salvos com sucesso!');
 			alert('Dados salvos com sucesso!');
+			limparDados(); // Limpa os dados após o envio
+			navigate("/medicamentos");
 		} catch (error) {
 			console.log(error);
 		};
 	}
 
-
-	// 	const formularioAtualizado = [...formMedicamentoValue, novamedicamento]
-	// 	setFormMedicamentoValue(formularioAtualizado)
-
-	// 	localStorage.setItem("dadosMedicamento", JSON.stringify(formularioAtualizado))
-
-	// 	console.log("Dados salvos com sucesso!")
-	// 	alert("Dados salvos com sucesso!");
-
-	// 	//função callback
-	// 	onMedicamentoAdd(novamedicamento);
-
-	// } catch (error) {
-	// 	console.log(error)
-	// }
+	//Limpar os campos dos inputs
+	const limparDados = () => {
+		setNomeMedicamento("");
+		setLaboratorio("");
+		setDosagem("");
+		setTipoMedicamento("");
+		setPrecoMedicamento("");
+		setDescricao("");
+	};
 
 	return (
 		<fieldset>
@@ -76,6 +75,7 @@ export const FormNovoMedicamento = ({ setMedicamentos }) => {
 							type="text"
 							value={nomeMedicamento}
 							onChange={e => setNomeMedicamento(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -85,6 +85,7 @@ export const FormNovoMedicamento = ({ setMedicamentos }) => {
 							type="text"
 							value={laboratorio}
 							onChange={e => setLaboratorio(e.target.value)}
+							required
 						/>
 					</Form.Group>
 				</div>
@@ -96,6 +97,7 @@ export const FormNovoMedicamento = ({ setMedicamentos }) => {
 							type="text"
 							value={dosagem}
 							onChange={e => setDosagem(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -104,7 +106,8 @@ export const FormNovoMedicamento = ({ setMedicamentos }) => {
 						<Form.Select
 							aria-label="Selecione o tipo de medicamento"
 							value={tipoMedicamento}
-							onChange={(e) => setTipoMedicamento(e.target.value)}>
+							onChange={(e) => setTipoMedicamento(e.target.value)}
+							required>
 							<option value="">Selecione uma opção</option>
 							<option value="Medicamento controlado">Medicamento controlado</option>
 							<option value="Medicamento comum">Medicamento comum</option>
@@ -115,13 +118,24 @@ export const FormNovoMedicamento = ({ setMedicamentos }) => {
 					<Form.Group className="col-3" id="form_preco">
 						<Form.Label>Valor</Form.Label>
 						<Form.Control
-							type="number"
+							required
+							mask="R$ num"
+							radix=","
+							blocks={{
+								num: {
+									mask: Number,
+									scale: 2,
+									thousandsSeparator: '.',
+									padFractionalZeros: true,
+									normalizeZeros: true,
+									signed: false
+								}
+							}}
+							as={IMaskInput}
 							value={precoMedicamento}
+							onAccept={(value) => setPrecoMedicamento(value)}
+							placeholder="R$ 0,00"
 							onChange={e => setPrecoMedicamento(e.target.value)}
-						// 	ref={inputRef}
-						// 	value={value}
-						// 	onInput={onInput}
-						//  value={preco} onChange={handlePriceChange} onBlur={handlePriceBlur} 
 						/>
 					</Form.Group>
 				</div>
@@ -130,9 +144,11 @@ export const FormNovoMedicamento = ({ setMedicamentos }) => {
 					<Form.Group className="col-12" id="form_descricao">
 						<Form.Label>Descrição do Medicamento</Form.Label>
 						<Form.Control
-							type="textarea"
+							as="textarea"
+							rows={4}
 							value={descricao}
-							onChange={e => setDescricao(e.target.value)} />
+							onChange={e => setDescricao(e.target.value)}
+							style={{ height: "150px" }} />
 					</Form.Group>
 				</div>
 
