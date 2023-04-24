@@ -4,12 +4,8 @@ import React, { useState } from 'react';
 import './FormNovaFarmacia.css';
 import axios from 'axios';
 import { IMaskInput } from 'react-imask';
-import { useNavigate } from 'react-router-dom';
-//import { FarmaciasContext } from '../Context/ContextFarmacias';
 
 export const FormNovaFarmacia = () => {
-
-	const navigate = useNavigate();
 
 	const [razaoSocial, setRazaoSocial] = useState('');
 	const [codLoja, setCodLoja] = useState('');
@@ -17,6 +13,7 @@ export const FormNovaFarmacia = () => {
 	const [CNPJ, setCNPJ] = useState('');
 	const [email, setEmail] = useState('');
 	const [telefone, setTelefone] = useState('');
+	const [celular, setCelular] = useState('');
 	const [cep, setCep] = useState('');
 	const [logradouro, setLogradouro] = useState('');
 	const [numero, setNumero] = useState('');
@@ -24,28 +21,23 @@ export const FormNovaFarmacia = () => {
 	const [bairro, setBairro] = useState('');
 	const [cidade, setCidade] = useState('');
 	const [uf, setUf] = useState('');
-	const [pais, setPais] = useState('');
 	const [latitude, setLatitude] = useState('');
 	const [longitude, setLongitude] = useState('');
 
 	const [formFarmaciaValue, setFormFarmaciaValue] = useState('');
 
-	function enderecoCompleto(logradouro, numero, bairro, cidade, uf) {
-		return `${logradouro}, ${numero}, ${bairro}, ${cidade} / ${uf}`;
-	}
-
-	//Salvar no localStorage
-
+	//SALVAR NO LOCALSTORAGE
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
 
-		const novafarmacia = {
+		const novaFarmacia = {
 			codLoja,
 			razaoSocial,
 			fantasia,
 			CNPJ,
 			email,
 			telefone,
+			celular,
 			cep,
 			logradouro,
 			numero,
@@ -53,28 +45,37 @@ export const FormNovaFarmacia = () => {
 			bairro,
 			cidade,
 			uf,
-			pais,
-			endereco: enderecoCompleto(logradouro, numero, bairro, cidade, uf),
+			endereco: enderecoCompleto(logradouro, numero, complemento, bairro, cidade, uf),
 			latitude,
 			longitude,
+		}
 
+		//PARA CONCATENAR O ENDEREÇO NO POPUP
+		function enderecoCompleto(logradouro, numero, complemento, bairro, cidade, uf) {
+			return `${logradouro}, ${numero} ${complemento}, ${bairro}, ${cidade} / ${uf}`;
 		}
 
 		try {
-			const formularioAtualizado = [...formFarmaciaValue, novafarmacia]
-			setFormFarmaciaValue(formularioAtualizado)
 
-			localStorage.setItem("dadosFarmacia", JSON.stringify(formularioAtualizado))
+			const dadosFarmacia = localStorage.getItem('dadosFarmacia');
+			let formularioAtualizado = [...formFarmaciaValue];
 
-			console.log("Dados salvos com sucesso!")
-			alert("Dados salvos com sucesso!");
-			//Redireciona para a página onde há o mapa das farmácias
-			navigate('/farmacias');
+			if (dadosFarmacia) {
+				formularioAtualizado = JSON.parse(dadosFarmacia);
+			}
+
+			formularioAtualizado.push(novaFarmacia);
+			localStorage.setItem('dadosFarmacia', JSON.stringify(formularioAtualizado));
+
+			setFormFarmaciaValue(formularioAtualizado);
+
+			console.log('Dados salvos com sucesso!');
+			alert('Dados salvos com sucesso!');
+			limparDados(); // Limpa os dados após o envio
 		} catch (error) {
-			console.log(error)
-		}
-	};
-
+			console.log(error);
+		};
+	}
 
 	//FUNÇÃO DE BUSCAO CEP NA API
 	const buscarCep = () => {
@@ -89,10 +90,9 @@ export const FormNovaFarmacia = () => {
 		setBairro(dados.bairro)
 		setCidade(dados.localidade)
 		setUf(dados.uf)
-		setPais(dados.pais)
 	}
 
-	//Limpar os campos dos inputs
+	//LIMPAR OS CAMPOS DOS INPUTS
 	const limparDados = () => {
 		setRazaoSocial("");
 		setCodLoja("");
@@ -100,6 +100,7 @@ export const FormNovaFarmacia = () => {
 		setCNPJ("");
 		setEmail("");
 		setTelefone("");
+		setCelular("");
 		setCep("");
 		setLogradouro("");
 		setNumero("");
@@ -107,59 +108,13 @@ export const FormNovaFarmacia = () => {
 		setBairro("");
 		setCidade("");
 		setUf("");
-		setPais("");
 		setLatitude("");
 		setLongitude("");
 	}
 
-
-	// //tentativa para atualizar estado e renderizar farmacia nova com context
-	// const { farmacias, salvarDadosFarmacia } = useContext(FarmaciasContext);
-	// salvarDadosFarmacia(FormNovaFarmacia);
-
-	/////////TENTATIVA DE NÃO PRECISAR DAR F5 NO MAPA
-
-	// const FormularioFarmacia = (props) => {
-
-	// 	const [novaFarmacia, setNovaFarmacia] = useState({
-	// 		cod: '',
-	// 		cnpj: '',
-	// 		razaoSocial: '',
-	// 		fantasia: '',
-	// 		email: '',
-	// 		telefone: '',
-	// 		endereco: '',
-	// 		latitude: '',
-	// 		longitude: '',
-	// 	});
-
-	// 	const handleInputChange = (event) => {
-	// 		const { nome, value }
-	// 	}
-	// };
-
-
-
-
-
-	///ATÉ AQUI A TENTATIVA 
-
-
-
-
-
-
-
-
-
-	//Formulário
-
+	//FORMULÁRIO
 	return (
-		<container className="container"
-		// //TENTATIVA PARA PEGAR DO LOCALSTORAGE
-		// CadastroFarmacia atualizarLojas={atualizarLojas}
-		>
-
+		<container className="container">
 			<Form className="FormCadastro"
 				onSubmit={handleFormSubmit}>
 				<div className="form-group row">
@@ -169,6 +124,7 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={razaoSocial}
 							onChange={e => setRazaoSocial(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -178,7 +134,8 @@ export const FormNovaFarmacia = () => {
 							as={IMaskInput}
 							mask="0000"
 							value={codLoja}
-							onChange={e => setCodLoja(e.target.value)} />
+							onChange={e => setCodLoja(e.target.value)}
+							required />
 					</Form.Group>
 				</div>
 
@@ -187,7 +144,8 @@ export const FormNovaFarmacia = () => {
 						<Form.Label>Nome Fantasia</Form.Label>
 						<Form.Control type="textarea"
 							value={fantasia}
-							onChange={e => setFantasia(e.target.value)} />
+							onChange={e => setFantasia(e.target.value)}
+							required />
 					</Form.Group>
 
 					<Form.Group className="col-4" id="form_CNPJ">
@@ -198,27 +156,41 @@ export const FormNovaFarmacia = () => {
 							inputMode="numeric"
 							value={CNPJ}
 							onChange={e => setCNPJ(e.target.value)}
+							required
 						/>
 					</Form.Group>
 				</div>
 
 				<div className="form-group row">
-					<Form.Group className="col-8" id="form_email">
+					<Form.Group className="col-6" id="form_email">
 						<Form.Label>E-mail</Form.Label>
 						<Form.Control type="email"
 							value={email}
 							onChange={e => setEmail(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
-					<Form.Group className="col-4" id="form_telefone">
+					<Form.Group className="col-3" id="form_telefone">
+						<Form.Label>Telefone</Form.Label>
+						<Form.Control
+							type="tel"
+							as={IMaskInput}
+							mask="(00)0000-0000"
+							value={telefone}
+							onChange={e => setTelefone(e.target.value)}
+						/>
+					</Form.Group>
+
+					<Form.Group className="col-3">
 						<Form.Label>Telefone Celular</Form.Label>
 						<Form.Control
 							type="tel"
 							as={IMaskInput}
 							mask="(00)00000-0000"
-							value={telefone}
-							onChange={e => setTelefone(e.target.value)}
+							value={celular}
+							onChange={e => setCelular(e.target.value)}
+							required
 						/>
 					</Form.Group>
 				</div>
@@ -230,13 +202,16 @@ export const FormNovaFarmacia = () => {
 							as={IMaskInput}
 							mask="00000000"
 							value={cep}
-							onChange={(e) => setCep(e.target.value)} />
+							onChange={(e) => setCep(e.target.value)}
+							required />
 					</Form.Group>
 
 					<Form.Group className="col-2">
 						<Button id="btnCep"
 							onClick={buscarCep}
+							required
 							variant="secondary">Buscar CEP</Button>
+
 					</Form.Group>
 
 					<Form.Group className="col-7" id="form_logradouro">
@@ -245,6 +220,7 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={logradouro}
 							onChange={e => setLogradouro(e.target.value)}
+							required
 						/>
 					</Form.Group>
 				</div>
@@ -257,6 +233,7 @@ export const FormNovaFarmacia = () => {
 							inputMode="numeric"
 							value={numero}
 							onChange={e => setNumero(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -274,35 +251,29 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={bairro}
 							onChange={e => setBairro(e.target.value)}
+							required
 						/>
 					</Form.Group>
 				</div>
 
 				<div className="form-group row">
-					<Form.Group className="col-6" id="form_cidade">
+					<Form.Group className="col-8" id="form_cidade">
 						<Form.Label>Cidade</Form.Label>
 						<Form.Control
 							type="text"
 							value={cidade}
 							onChange={e => setCidade(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
-					<Form.Group className="col-2" id="form_uf">
+					<Form.Group className="col-4" id="form_uf">
 						<Form.Label>Estado/UF</Form.Label>
 						<Form.Control
 							type="text"
 							value={uf}
 							onChange={e => setUf(e.target.value)}
-						/>
-					</Form.Group>
-
-					<Form.Group className="col-4" id="form_pais">
-						<Form.Label>País</Form.Label>
-						<Form.Control
-							type="text"
-							value={pais}
-							onChange={e => setPais(e.target.value)}
+							required
 						/>
 					</Form.Group>
 				</div>
@@ -314,6 +285,7 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={latitude}
 							onChange={e => setLatitude(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -323,6 +295,7 @@ export const FormNovaFarmacia = () => {
 							type="text"
 							value={longitude}
 							onChange={e => setLongitude(e.target.value)}
+							required
 						/>
 					</Form.Group>
 
@@ -350,6 +323,6 @@ export const FormNovaFarmacia = () => {
 
 			{/* Ajuste para o footer não ficar sobrepondo o conteudo da página. */}
 			<br /><br /><br />
-		</container>
+		</container >
 	);
 }
