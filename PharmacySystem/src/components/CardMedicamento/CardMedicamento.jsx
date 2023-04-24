@@ -37,5 +37,3 @@ export const CardMedicamento = ({ nomeMedicamento, dosagem, precoMedicamento, la
 		</Card>
 	);
 };
-
-
