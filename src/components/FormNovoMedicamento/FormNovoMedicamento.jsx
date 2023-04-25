@@ -154,10 +154,21 @@ export const FormNovoMedicamento = () => {
 
 				<div className="d-flex justify-content-end">
 					<Button
-						className="btn-envio ms-auto"
+						className="btn-envio"
+						variant="secondary"
+						id="btn-cadastro"
+						onClick={limparDados}
+						style={{ marginRight: "10px" }}>
+						Limpar Dados
+
+					</Button>
+
+					<Button
+						className="btn-envio"
 						variant="success"
 						type="submit"
-						id="btn-cadastro">
+						id="btn-cadastro"
+					>
 						Enviar Cadastro
 					</Button>
 				</div>
