@@ -301,17 +301,19 @@ export const FormNovaFarmacia = () => {
 
 				</div>
 
-				<div className="d-flex justify-content-end ">
+				<div className="d-flex justify-content-end">
 					<Button
-						className="btn-envio ms-auto"
+						className="btn-envio"
 						variant="secondary"
 						id="btn-cadastro"
-						onClick={limparDados}>
+						onClick={limparDados}
+						style={{ marginRight: "10px" }}>
 						Limpar Dados
+
 					</Button>
 
 					<Button
-						className="btn-envio ms-auto"
+						className="btn-envio"
 						variant="success"
 						type="submit"
 						id="btn-cadastro"

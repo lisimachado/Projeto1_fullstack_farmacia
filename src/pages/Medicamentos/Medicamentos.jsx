@@ -108,6 +108,7 @@ export const Medicamentos = () => {
 			<Row>
 				{medicamentos.map((medicamento, index) => (
 					<Col key={index} md={3}>
+						{/* <CardMedicamento {...medicamento} /> */}
 						<CardMedicamento {...medicamento} />
 					</Col>
 				))}
