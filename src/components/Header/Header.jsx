@@ -27,6 +27,7 @@ export const Header = () => {
 				<Nav.Link className="nav-link-menu" href="/farmacias">Farmácias</Nav.Link>
 				<Nav.Link className="nav-link-menu" href="/medicamentos">Medicamentos</Nav.Link>
 				<Nav.Link className="nav-link-menu" href="/cadastro">Cadastro</Nav.Link>
+				<Nav.Link className="nav-link-menu" href="/faqpage">FAQ</Nav.Link>
 				<Nav.Link className="nav-link-sair" href="/"> Sair </Nav.Link>
 
 			</Nav>
