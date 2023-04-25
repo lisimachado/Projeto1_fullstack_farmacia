@@ -7,6 +7,7 @@ import { Farmacias } from "./pages/Farmacias/Farmacias";
 import { Medicamentos } from "./pages/Medicamentos/Medicamentos";
 import { PgCadFarmacias } from "./pages/PgCadFarmacias/PgCadFarmacias";
 import { PgCadMedicamentos } from "./pages/PgCadMedicamentos/PgCadMedicamentos";
+import { FaqPage } from "./pages/FaqPage/FaqPage";
 
 export const appRouter = createBrowserRouter([
 	{
@@ -20,6 +21,7 @@ export const appRouter = createBrowserRouter([
 			{ path: '/cadastro', element: <Cadastro /> },
 			{ path: '/cadastronovafarmacia', element: <PgCadFarmacias /> },
 			{ path: '/cadastronovomedicamento', element: <PgCadMedicamentos /> },
+			{ path: '/faqpage', element: <FaqPage /> },
 
 		],
 	},
