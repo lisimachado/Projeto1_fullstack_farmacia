@@ -1,18 +1,3 @@
-DOCUMENTANÇÃO DO README
-
-Documentar a sua solução
-Demonstrar as técnicas e linguagens utilizadas
-Escopo do projeto e como o usuário pode executar o seu sistema.
-
-	Algumas dicas interessantes para utilizar na criação do seu portfólio são:
-● Criar um nome para o seu software;
-● Descrever qual o problema ele resolve;
-● Descrever quais técnicas e tecnologias utilizadas. Aqui você também pode inserir
-alguma imagem ou diagrama para melhor entendimento;
-● Descrever como executar;
-● Descrever quais melhorias podem ser aplicadas;
-● Entre outras coisas.
-
 ## Olá! Bem-vindo(a) ao projeto Pharmacy Central System!
 
 #### Qual o problema ele resolve?
@@ -41,8 +26,8 @@ Este projeto foi desenvolvido utilizando:
 #### Como executar o modo develop:
 Para executar este projeto em sua máquina local, é necessário ter o [Node.js](https://nodejs.org/en/download) instalado, na sua versão mais atual. Após clonar o repositório, execute o comando a seguir para instalar as dependências necessárias, as quais se encontram liostadas no arquivo 'package.json'.
 
-```sh
-npm console
+```console
+npm install
 ``` 
 
  Na sequência, execute o comando a seguir para iniciar a aplicação localmente:
@@ -75,7 +60,7 @@ npm console
  #### Vídeo
 
 O vídeo explicativo do projeto você pode assistir clicando no link abaixo:
-LINK DO GOOGLE DRIVE
+https://drive.google.com/file/d/10glRt4snydE91dSSYuyGEORUJE2q4cBk/view?usp=sharing
 
 
 #####Obrigada por acessar o Pharmacy Central System!
