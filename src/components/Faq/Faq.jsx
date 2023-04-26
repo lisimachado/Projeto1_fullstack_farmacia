@@ -1,23 +1,22 @@
-import { Accordion, Card, Button } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
 
 export const FaqComponent = () => {
 	const faqList = [
 		{
 			pergunta: "Como faço para cadastrar uma farmácia?",
 			resposta:
-				"Para cadastrar uma farmácia, clique no botão 'Cadastrar Farmácia' na página inicial e preencha o formulário com as informações solicitadas."
+				"Para cadastrar uma farmácia, clique no botão 'Cadastro' no menu inicial e em seguida no botão 'Novo Meicamento' e preencha o formulário com as informações solicitadas."
 		},
 		{
 			pergunta: "Quais são os tipos de medicamentos que podem ser cadastrados?",
 			resposta:
-				"Podem ser cadastrados medicamentos de venda livre, medicamentos controlados e medicamentos manipulados."
+				"Podem ser cadastrados medicamentos de venda livre e medicamentos controlados."
 		},
 		{
-			pergunta: "Como faço para editar as informações de uma farmácia?",
+			pergunta: "Quais são as informações necessárias para cadastrar um medicamento no sistema?",
 			resposta:
-				"Para editar as informações de uma farmácia, acesse a página de detalhes da farmácia e clique no botão 'Editar'."
+				"As informações necessárias para cadastro de um novo medicamento são: Nome do medicamento, Laboratório, Dosagem, Tipo de Medicamento, Valor e Descrição."
 		},
-		// adicione mais perguntas e respostas conforme necessário
 	];
 
 	return (

@@ -19,7 +19,7 @@ export function Mapa() {
 	const { lojas } = useContext(FarmaciasContext);
 
 	return (
-		<MapContainer center={position} zoom={12} style={{ height: '350px' }}>
+		<MapContainer center={position} zoom={12} style={{ height: '450px' }}>
 
 			<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 			{lojas.map((loja) => (
