@@ -49,7 +49,7 @@ npm install
  Para fazer o deploy da aplicação execute o comando abaixo para gerar os arquivos necessários:
 
  ```console
- node run buil
+ node run build
  ```
  Este comando irá gerar os arquivos js, html e css na /dist utilizada para o deploy na Cloudflare.
 
@@ -63,4 +63,4 @@ O vídeo explicativo do projeto você pode assistir clicando no link abaixo:
 https://www.loom.com/share/2abfae92d42f41d59791f85454463f56
 
 
-####Obrigada por acessar o Pharmacy Central System!
+#### Obrigada por acessar o Pharmacy Central System!
