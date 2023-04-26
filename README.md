@@ -60,7 +60,7 @@ npm install
  #### Vídeo
 
 O vídeo explicativo do projeto você pode assistir clicando no link abaixo:
-https://drive.google.com/file/d/10glRt4snydE91dSSYuyGEORUJE2q4cBk/view?usp=sharing
+https://www.loom.com/share/2abfae92d42f41d59791f85454463f56
 
 
 #####Obrigada por acessar o Pharmacy Central System!
